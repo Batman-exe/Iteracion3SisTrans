@@ -133,11 +133,18 @@ public class PersistenciaAlohAndes
 		tablas = new LinkedList<String> ();
 		tablas.add ("AlohAndes_sequence");
 		tablas.add ("CLIENTES");
-		tablas.add("PERSONASJURIDICAS");
 		tablas.add("PERSONASNATURALES");
+		tablas.add("PERSONASJURIDICAS");
 		tablas.add("OFERTAS");
+		tablas.add("ADICIONALES");
+		tablas.add("INTERSEAN");
 		tablas.add("RESERVAS");
-
+		tablas.add("CONTRATOS");
+		tablas.add("OFERTAAPARTAMENTO");
+		tablas.add("OFERTAESPORADICA");
+		tablas.add("OFERTAHABITACIONDIARIA");
+		tablas.add("OFERTAHABITACIONMENSUAL");
+		tablas.add("OFERTAVIVIENDAUNIVERSITARIA");
 }
 
 	/**
