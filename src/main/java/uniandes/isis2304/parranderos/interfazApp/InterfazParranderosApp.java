@@ -289,10 +289,12 @@ public class InterfazParranderosApp extends JFrame implements ActionListener
     {
     	try 
     	{
-    		String id = JOptionPane.showInputDialog (this, "Numero de documento del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String id = JOptionPane.showInputDialog (this, "Numero de document?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
     		Long numId = Long.parseLong(id);
     		
-    		String tipoOferta = JOptionPane.showInputDialog (this, "Tipo de documento del cliente? (CC,CE,TI o PA)", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String 
+    		
+    		String tipoOferta = JOption
     		
     		if (id != null && tipoOferta != null)
     		{

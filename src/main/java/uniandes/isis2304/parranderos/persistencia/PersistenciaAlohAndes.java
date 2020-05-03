@@ -35,6 +35,8 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.parranderos.negocio.Cliente;
 import uniandes.isis2304.parranderos.negocio.Oferta;
 import uniandes.isis2304.parranderos.negocio.OfertaApartamento;
+import uniandes.isis2304.parranderos.negocio.OfertaEsporadica;
+import uniandes.isis2304.parranderos.negocio.OfertaHabitacionDiaria;
 import uniandes.isis2304.parranderos.negocio.OfertaHabitacionMensual;
 import uniandes.isis2304.parranderos.negocio.OfertaViviendaUniversitaria;
 import uniandes.isis2304.parranderos.negocio.PersonaJuridica;
@@ -335,7 +337,7 @@ public class PersistenciaAlohAndes
         }
 	}
 	
-	public PersonaJuridica adicionarPersonaJuridica(Integer nit, String nombre, String tipo, String horaApertura,
+	public PersonaJuridica adicionarPersonaJuridica(Long nit, String nombre, String tipo, String horaApertura,
 			String horaCierre, String userName, String contrasena) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -402,19 +404,19 @@ public class PersistenciaAlohAndes
         }
 	}
 	
-	public Oferta adicionarOferta(Long id, String tipo_oferta) 
+	public Oferta adicionarOferta(Long id, String tipo_oferta, Boolean disponible, Integer precio) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlO.adicionarOferta(pm, id, tipo_oferta);
+            long tuplasInsertadas = sqlO.adicionarOferta(pm, id, tipo_oferta, disponible,precio);
             tx.commit();
 
             log.trace ("InserciÃ³n de oferta: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Oferta(id, tipo_oferta);
+            return new Oferta(id, tipo_oferta, disponible,precio);
         }
         catch (Exception e)
         {
@@ -494,21 +496,21 @@ public class PersistenciaAlohAndes
         }
 	}
 	
-	public OfertaApartamento adicionarOfertaApartamento(Long id, Integer capacidad, String descripcion, Boolean esAmoblado,
-			String ubicacion, Long docOperador, String tipoDocOperador, Integer precio) 
+	public OfertaApartamento adicionarOfertaApartamento(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, String descripcion,
+			Boolean esAmoblado, String ubicacion, Long documentoOp,String tipoDocOp, Long contrato) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOA.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
+            long tuplasInsertadas = sqlOA.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("InserciÃ³n de oferta apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new OfertaApartamento(id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
+            return new OfertaApartamento(id, tipo, disponible, precio, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
         }
         catch (Exception e)
         {
@@ -658,5 +660,18 @@ public class PersistenciaAlohAndes
             pm.close();
         }
 	}
+	
+	/**
+	 * Transacción para el generador de secuencia de Parranderos
+	 * Adiciona entradas al log de la aplicación
+	 * @return El siguiente número del secuenciador de Parranderos
+	 */
+	private long nextval ()
+	{
+        long resp = sqlUtil.nextval (pmf.getPersistenceManager());
+        log.trace ("Generando secuencia: " + resp);
+        return resp;
+    }
+	
 
  }
