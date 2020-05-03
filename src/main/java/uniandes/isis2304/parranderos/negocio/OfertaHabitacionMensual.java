@@ -24,7 +24,7 @@ public class OfertaHabitacionMensual extends Oferta implements VOOfertaHabitacio
 	
 
 	public OfertaHabitacionMensual(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, String descripcion,
-			String ubicacion, Long documentoOp, String tipoDocOp) {
+			String ubicacion, Long documentoOp, String tipoDocOp, Long contrato) {
 		super.setId(id);
 		super.setTipo(tipo);
 		super.setDisponible(disponible);
@@ -34,6 +34,7 @@ public class OfertaHabitacionMensual extends Oferta implements VOOfertaHabitacio
 		this.ubicacion = ubicacion;
 		this.documentoOp = documentoOp;
 		this.tipoDocOp = tipoDocOp;
+		this.contrato=contrato;
 	}
 
 	
