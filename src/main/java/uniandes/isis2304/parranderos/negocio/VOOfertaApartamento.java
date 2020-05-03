@@ -8,17 +8,13 @@ public interface VOOfertaApartamento {
 
 	public String getDescripcion();
 
-	public Boolean getEsAmoblado();
 	
 	public String getUbicacion();
+	
 
-	public Long getDocumentoOp();
 	
-	public String getTipoDocOp();
+	public String getContrato();
 	
-	public Long getContrato();
-	
-	public List<Reserva> getReservas();
 
 	public String toString();
 }

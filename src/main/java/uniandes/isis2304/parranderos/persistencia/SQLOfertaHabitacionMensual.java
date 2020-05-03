@@ -35,11 +35,11 @@ public class SQLOfertaHabitacionMensual {
 	}
 	
 	public long adicionarHabitacionMensual(PersistenceManager pm, Long id, Integer capacidad, String descripcion,
-			String ubicacion, Long docOperador, String tipoDocOperador, Long contrato) 
+			String ubicacion, Long docOperador, String tipoDocOperador) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaHabitacionMensual() 
-        	+ "(id, capacidad, descripcion, ubicacion, doc_operador, tipo_doc_op, contrato) values (?, ?, ?, ?, ?, ?, ?)");
-        q.setParameters(id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, contrato);
+        	+ "(id, capacidad, descripcion, ubicacion, doc_operador, tipo_doc_op) values (?, ?, ?, ?, ?, ?)");
+        q.setParameters(id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador);
         return (long) q.executeUnique();
 	}
 	

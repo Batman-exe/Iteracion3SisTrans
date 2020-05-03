@@ -2,7 +2,7 @@ package uniandes.isis2304.parranderos.negocio;
 
 public interface VOAdicional {
 
-	public Long getId_oferta();
+	public String getId_oferta();
 	
 	public String getNombre();
 	

@@ -1,5 +1,8 @@
 package uniandes.isis2304.parranderos.negocio;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
@@ -108,10 +111,10 @@ public class AlohAndes {
         return r;
 	}
 	
-	public long eliminarReservaPorNumero (Long numReserva)
+	public long eliminarReservaPorNumero (Long numReserva, Long idOferta)
 	{
         log.info ("Eliminando reserva por id: " + numReserva);
-        long resp = pA.eliminarReservaPorNumero(numReserva);
+        long resp = pA.eliminarReservaPorNumero(numReserva, idOferta);
         log.info ("Eliminando reserva: " + resp);
         return resp;
 	}
@@ -151,10 +154,10 @@ public class AlohAndes {
 	}
 	
 	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, String tipo, Boolean disponible, Integer precio, 
-			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato)
+			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp)
 	{
         log.info ("Adicionando oferta habitacion mensual " + id);
-        OfertaHabitacionMensual oHM = pA.adicionarOfertaHabitacionMensual(id, tipo, disponible, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+        OfertaHabitacionMensual oHM = pA.adicionarOfertaHabitacionMensual(id, tipo, disponible, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp);
         log.info ("Adicionando oferta habitacion mensual: " +oHM);
         return oHM;
 	}
@@ -166,5 +169,116 @@ public class AlohAndes {
 		OfertaViviendaUniversitaria oVU = pA.adicionarOfertaViviendaUniversitaria(id, tipo, disponible, precio, capacidad, duracion, esCompartida, id_operador);
 		log.info ("Adicionando oferta vivienda universitaria: " +oVU);
 		return oVU;
+	}
+	
+	public List<Adicional> darAdicionales()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<Adicional> tiposBebida = pA.darAdicionales();	
+        log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
+        return tiposBebida;
+	}
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos y los devuelve como una lista de VOTipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOAdicional> darVOAdicionales()
+	{
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOAdicional> voTipos = new LinkedList<VOAdicional> ();
+        for (Adicional tb : pA.darAdicionales())
+        {
+        	voTipos.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
+        return voTipos;
+	}
+	
+	public List<Reserva> darReservas()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<Reserva> tiposBebida = pA.darReservas();	
+        log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
+        return tiposBebida;
+	}
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos y los devuelve como una lista de VOTipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOReserva> darVOReservas()
+	{
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOReserva> voTipos = new LinkedList<VOReserva> ();
+        for (Reserva tb : pA.darReservas())
+        {
+        	voTipos.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
+        return voTipos;
+	}
+	
+	
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos TipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
+	 */
+	public List<Oferta> darOfertas()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<Oferta> tiposBebida = pA.darOfertas ();	
+        log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
+        return tiposBebida;
+	}
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos y los devuelve como una lista de VOTipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOOferta> darVOOfertas()
+	{
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOOferta> voTipos = new LinkedList<VOOferta> ();
+        for (Oferta tb : pA.darOfertas())
+        {
+        	voTipos.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
+        return voTipos;
+	}
+	/**
+	 * Encuentra el tipos de bebida en Parranderos con el nombre solicitado
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre de la bebida
+	 * @return Un objeto TipoBebida con el tipos de bebida de ese nombre que conoce la aplicación, 
+	 * lleno con su información básica
+	 */
+	public Oferta darOfertaPorId (Long id)
+	{
+		log.info ("Buscando Oferta por id: " + id);
+		Oferta tb = pA.darOfertaPorId(id);
+		return tb;
+	}
+	
+	public List<OfertaApartamento> darOfertasApartamento()
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<OfertaApartamento> tiposBebida = pA.darOfertasApartamento();	
+        log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
+        return tiposBebida;
+	}
+	
+	public List<VOOfertaApartamento> darVOOfertasApartamento()
+	{
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOOfertaApartamento> voTipos = new LinkedList<VOOfertaApartamento> ();
+        for (OfertaApartamento tb : pA.darOfertasApartamento())
+        {
+        	voTipos.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
+        return voTipos;
 	}
 }

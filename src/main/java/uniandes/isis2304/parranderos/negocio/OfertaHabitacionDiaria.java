@@ -21,9 +21,9 @@ public class OfertaHabitacionDiaria extends Oferta implements VOOfertaHabitacion
 
 	
 
-	public OfertaHabitacionDiaria(Long id, String tipo, Boolean disponible, Integer precio, Boolean esCompartida, String ubicacion, Long id_operador) {
-		super.setId(id);
-		super.setTipo(tipo);
+	public OfertaHabitacionDiaria(String id, String tipo, Integer disponible, Integer precio, Boolean esCompartida, String ubicacion, Long id_operador) {
+		super.setId_oferta(id);
+		super.setTipo_oferta(tipo);
 		super.setDisponible(disponible);
 		super.setPrecio(precio);
 		this.esCompartida = esCompartida;

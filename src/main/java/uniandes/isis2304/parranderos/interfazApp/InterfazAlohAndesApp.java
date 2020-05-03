@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
@@ -50,6 +51,7 @@ import uniandes.isis2304.parranderos.negocio.Oferta;
 import uniandes.isis2304.parranderos.negocio.VOAdicional;
 import uniandes.isis2304.parranderos.negocio.VOCliente;
 import uniandes.isis2304.parranderos.negocio.VOContrato;
+import uniandes.isis2304.parranderos.negocio.VOOferta;
 import uniandes.isis2304.parranderos.negocio.VOOfertaApartamento;
 import uniandes.isis2304.parranderos.negocio.VOOfertaEsporadica;
 import uniandes.isis2304.parranderos.negocio.VOOfertaHabitacionDiaria;
@@ -611,7 +613,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		String idO = JOptionPane.showInputDialog (this, "Id de la oferta?", "Adicionar Reserva", JOptionPane.QUESTION_MESSAGE);
     		Long idOferta = Long.parseLong(idO);
     		String doc = JOptionPane.showInputDialog (this, "documento del cliente?", "Adicionar Reserva", JOptionPane.QUESTION_MESSAGE);
-    		Long docCliente = Long.parseLong(idO);
+    		Long docCliente = Long.parseLong(doc);
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del cliente? (CC,CE,TI o PA)", "Adicionar Reserva", JOptionPane.QUESTION_MESSAGE);
     		String fechaCancelacion = JOptionPane.showInputDialog (this, "Fecha de cancelacion oportuna?", "Adicionar Reserva", JOptionPane.QUESTION_MESSAGE);
     		if (R != null && fechaInicio != null && fechaFin != null  && idO != null && doc != null 
@@ -646,9 +648,11 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     	{
     		String id = JOptionPane.showInputDialog (this, "Id de la reserva?", "Borrar reserva por Id", JOptionPane.QUESTION_MESSAGE);
     		Long lId =Long.parseLong(id);
+    		String id2 = JOptionPane.showInputDialog (this, "Id de la oferta para esta reserva?", "Borrar reserva por Id", JOptionPane.QUESTION_MESSAGE);
+    		Long lId2 =Long.parseLong(id2);
     		if (id != null)
     		{
-    			long tbEliminados = alohAndes.eliminarReservaPorNumero(lId);
+    			long tbEliminados = alohAndes.eliminarReservaPorNumero(lId,lId2);
 
     			String resultado = "En eliminar TipoBebida\n\n";
     			resultado += tbEliminados + " Tipos de bebida eliminados\n";
@@ -689,10 +693,13 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del operador? (CC,CE,TI o PA)", "Adicionar oferta apartamento", JOptionPane.QUESTION_MESSAGE);
     		
-    		Long numContrato= Long.parseLong(JOptionPane.showInputDialog(this, "¿Cuál es número del contrato?", "Adicionar contrato", JOptionPane.QUESTION_MESSAGE));
+    		String contrato= JOptionPane.showInputDialog(this, "¿Cuál es número del contrato?", "Adicionar contrato", JOptionPane.QUESTION_MESSAGE);
+    		Long numContrato = null;
+    		if(!contrato.equalsIgnoreCase(""))
+    			numContrato = Long.parseLong(contrato);
     		
     		if (id != null && cap != null && descripcion != null  && amoblado != null && ubicacion != null 
-    				&& operador != null && tipoDoc != null && precio != null && numContrato!=null)
+    				&& operador != null && tipoDoc != null && precio != null)
     		{
     			VOOfertaApartamento oA = alohAndes.adicionarOfertaApartamento(id, "APARTAMENTO", disponible, precio, numCap, descripcion, esAmo, ubicacion, docOperador, tipoDoc, numContrato);
     			if (oA == null)
@@ -712,6 +719,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     	catch (Exception e) 
     	{
 			String resultado = generarMensajeError(e);
+			e.printStackTrace();
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
@@ -731,12 +739,11 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		Long docOperador = Long.parseLong(operador);
     		
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del operador? (CC,CE,TI o PA)", "Adicionar oferta apartamento", JOptionPane.QUESTION_MESSAGE);
-    		Long contrato= Long.parseLong(JOptionPane.showInputDialog(this, "¿Cuál es número del contrato?", "Adicionar contrato", JOptionPane.QUESTION_MESSAGE));
     		if (id != null && cap != null && descripcion != null && ubicacion != null 
     				&& operador != null && tipoDoc != null && precio != null)
     		{
 
-    			VOOfertaHabitacionMensual oA = alohAndes.adicionarOfertaHabitacionMensual(id, "HABITACION MENSUAL", disponible, precio, numCap, descripcion, ubicacion, docOperador, tipoDoc, contrato);
+    			VOOfertaHabitacionMensual oA = alohAndes.adicionarOfertaHabitacionMensual(id, "HABITACION MENSUAL", disponible, precio, numCap, descripcion, ubicacion, docOperador, tipoDoc);
     			if (oA == null)
         		{
         			throw new Exception ("No se pudo crear una oferta habitacion mensual: " + id);
@@ -790,6 +797,175 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		panelDatos.actualizarInterfaz(resultado);
     	}
 
+    }
+    
+    /**
+     * Consulta en la base de datos los tipos de bebida existentes y los muestra en el panel de datos de la aplicación
+     */
+    public void listarOfertas( )
+    {
+    	try 
+    	{
+			List <VOOferta> lista = alohAndes.darVOOfertas();
+
+			String resultado = "En listarTipoBebida";
+			resultado +=  "\n" + listarTiposBebida (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void listarOfertasApartamento( )
+    {
+    	try 
+    	{
+			List <VOOfertaApartamento> lista = alohAndes.darVOOfertasApartamento();
+
+			String resultado = "En listarTipoBebida";
+			resultado +=  "\n" + listarOfertasApartamento (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void listarAdicionales( )
+    {
+    	try 
+    	{
+			List <VOAdicional> lista = alohAndes.darVOAdicionales();
+
+			String resultado = "En listarTipoBebida";
+			resultado +=  "\n" + listarAdicionales (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void listarReservas( )
+    {
+    	try 
+    	{
+			List <VOReserva> lista = alohAndes.darVOReservas();
+
+			String resultado = "En listarTipoBebida";
+			resultado +=  "\n" + listarReservas (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    /**
+     * Genera una cadena de caracteres con la lista de los tipos de bebida recibida: una línea por cada tipo de bebida
+     * @param lista - La lista con los tipos de bebida
+     * @return La cadena con una líea para cada tipo de bebida recibido
+     */
+    private String listarTiposBebida(List<VOOferta> lista) 
+    {
+    	String resp = "Los tipos de bebida existentes son:\n";
+    	int i = 1;
+        for (VOOferta tb : lista)
+        {
+        	resp += i++ + ". " + tb.toString() + "\n";
+        }
+        return resp;
+	}
+    
+    private String listarOfertasApartamento(List<VOOfertaApartamento> lista) 
+    {
+    	String resp = "Los tipos de bebida existentes son:\n";
+    	int i = 1;
+        for (VOOfertaApartamento tb : lista)
+        {
+        	resp += i++ + ". " + tb.toString() + "\n";
+        }
+        return resp;
+	}
+    
+    private String listarAdicionales(List<VOAdicional> lista) 
+    {
+    	String resp = "Los tipos de bebida existentes son:\n";
+    	int i = 1;
+        for (VOAdicional tb : lista)
+        {
+        	resp += i++ + ". " + tb.toString() + "\n";
+        }
+        return resp;
+	}
+    
+    private String listarReservas(List<VOReserva> lista) 
+    {
+    	String resp = "Los tipos de bebida existentes son:\n";
+    	int i = 1;
+        for (VOReserva tb : lista)
+        {
+        	resp += i++ + ". " + tb.toString() + "\n";
+        }
+        return resp;
+	}
+    /**
+     * Busca el tipo de bebida con el nombre indicado por el usuario y lo muestra en el panel de datos
+     */
+    public void buscarOfertaPorId( )
+    {
+    	try 
+    	{
+    		String idOferta = JOptionPane.showInputDialog (this, "id de la oferta?", "Buscar tipo de bebida por nombre", JOptionPane.QUESTION_MESSAGE);
+    		Long id = Long.parseLong(idOferta);
+    		if (idOferta != null)
+    		{
+    			VOOferta oferta = alohAndes.darOfertaPorId(id);
+    			String resultado = "En buscar oferta por id\n\n";
+    			if (oferta != null)
+    			{
+        			resultado += "La oferta es: " + oferta;
+    			}
+    			else
+    			{
+        			resultado += "Una oferta con: " + idOferta + " NO EXISTE\n";    				
+    			}
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			e.printStackTrace();
+			panelDatos.actualizarInterfaz(resultado);
+		}
     }
 
    

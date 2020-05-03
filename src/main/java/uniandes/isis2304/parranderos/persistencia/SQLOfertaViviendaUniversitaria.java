@@ -38,7 +38,7 @@ public class SQLOfertaViviendaUniversitaria {
 			Boolean esCompartida, Long id_operador) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaViviendaUniversitaria() 
-        + "(id, capacidad, duracion, es_compartida, id_operador) values (?, ?, ?, ?, ?");
+        + "(id, capacidad, duracion, es_compartida, id_operador) values (?, ?, ?, ?, ?)");
         q.setParameters(id, capacidad,duracion,esCompartida, id_operador);
         return (long) q.executeUnique();
 	}

@@ -1,7 +1,12 @@
 package uniandes.isis2304.parranderos.persistencia;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.parranderos.negocio.Oferta;
+import uniandes.isis2304.parranderos.negocio.OfertaApartamento;
 
 public class SQLOfertaApartamento {
 	
@@ -37,10 +42,25 @@ public class SQLOfertaApartamento {
 	public long adicionarOfertaApartamento(PersistenceManager pm, Long id, Integer capacidad, String descripcion, Boolean esAmoblado,
 			String ubicacion, Long docOperador, String tipoDocOperador, Long contrato) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaApartamento() + 
-        	"(id, capacidad, descripcion, es_amoblado, ubicacion, doc_operador, tipo_doc_operador, contrato) values (?, ?, ?, ?, ?, ?, ?, ?)");
+        System.out.println(tipoDocOperador);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaApartamento() + 
+        	"(id, capacidad, descripcion, es_amoblado, ubicacion, doc_operador, tipo_doc_op, contrato) values (?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, contrato);
         return (long) q.executeUnique();
+	}
+	
+	/**
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS TIPOS DE BEBIDA de la 
+	 * base de datos de Parranderos
+	 * @param pm - El manejador de persistencia
+	 * @return Una lista de objetos TIPOBEBIDA
+	 */
+	public List<OfertaApartamento> darOfertasApartamento (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOfertas() );
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<OfertaApartamento>) q.executeResultList(OfertaApartamento.class);
 	}
 
 }
