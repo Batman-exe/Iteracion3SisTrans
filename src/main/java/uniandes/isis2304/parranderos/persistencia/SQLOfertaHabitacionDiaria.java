@@ -34,11 +34,11 @@ public class SQLOfertaHabitacionDiaria {
 		this.pp = pp;
 	}
 	
-	public long adicionarOfertaHabitacionDiaria (PersistenceManager pm, Long id,Boolean esCompartida, Integer precio, 
-			String ubicacion, Long id_operador) 
+	public long adicionarOfertaHabitacionDiaria (PersistenceManager pm, Long id,Boolean esCompartida, String ubicacion, Long id_operador) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaHabitacionDiaria() + "(id, es_compartida, precio, ubicacion, id_operador) values (?, ?, ?, ?, ?)");
-        q.setParameters(id, esCompartida, precio, ubicacion, id_operador);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaHabitacionDiaria() + 
+        		"(id, es_compartida, ubicacion, id_operador) values (?, ?, ?, ?)");
+        q.setParameters(id, esCompartida, ubicacion, id_operador);
         return (long) q.executeUnique();
 	}
 }

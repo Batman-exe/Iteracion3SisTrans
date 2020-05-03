@@ -23,7 +23,8 @@ public class PersonaJuridica extends Usuario implements VOPersonaJuridica {
 	
 	
 
-	public PersonaJuridica(Long nit, String nombre, String tipo, String horaApertura, String horaCierre, String userName, String contrasena) {
+	public PersonaJuridica(Long nit, String nombre, String tipo, String horaApertura, String horaCierre, String userName, 
+			String contrasena) {
 		super();
 		this.nit = nit;
 		super.setNombre(nombre);

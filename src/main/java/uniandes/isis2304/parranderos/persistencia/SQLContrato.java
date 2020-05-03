@@ -3,7 +3,7 @@ package uniandes.isis2304.parranderos.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-public class SQLOfertaEsporadica {
+public class SQLContrato {
 
 	/* ****************************************************************
 	 * 			Constantes
@@ -29,17 +29,16 @@ public class SQLOfertaEsporadica {
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLOfertaEsporadica (PersistenciaAlohAndes pp)
+	public SQLContrato (PersistenciaAlohAndes pp)
 	{
 		this.pp = pp;
 	}
 	
-	public long adicionarOfertaEsporadica (PersistenceManager pm, Long id, Integer duracion, String descripcion,
-			String descripcion_seguro, Integer num_habitaciones, String ubicacion) 
+	public long adicionarContrato (PersistenceManager pm, Long numContrato, Integer duracion, Long numReserva) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaEsporadica() +
-        		"(id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion) values (?, ?, ?, ?, ?, ?)");
-        q.setParameters(id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaContratos() 
+        + "(num_contrato, duracion, id_reserva) values (?, ?, ?)");
+        q.setParameters(numContrato, duracion, numReserva);
         return (long) q.executeUnique();
 	}
 }

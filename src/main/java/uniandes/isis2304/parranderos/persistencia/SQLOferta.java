@@ -32,14 +32,14 @@ public class SQLOferta {
 		this.pp = pp;
 	}
 	
-	public long adicionarOferta (PersistenceManager pm, Long id, String tipoOferta) 
+	public long adicionarOferta (PersistenceManager pm, Long id, String tipoOferta, Boolean disponible, Integer precio) 
 	{
-       Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertas() + "(id_oferta, tipo_oferta) values (?, ?)");
+       Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertas() + "(id_oferta, tipo_oferta, disponible, precio) values (?, ?)");
        q.setParameters(id, tipoOferta);
        return (long) q.executeUnique();
 	}
 	
-	public long eliminarOferta (PersistenceManager pm, long idoferta)
+	public long eliminarOferta (PersistenceManager pm, Long idoferta)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOfertas() + " WHERE id_oferta = ?");
         q.setParameters(idoferta);
