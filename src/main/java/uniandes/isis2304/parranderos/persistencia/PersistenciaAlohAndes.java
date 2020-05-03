@@ -99,23 +99,27 @@ public class PersistenciaAlohAndes
 	
 	private SQLCliente sqlCliente;
 	
-	private SQLPersonaJuridica sqlPJ;
+	private SQLPersonaNatural sqlPersonaNatural;
 	
-	private SQLPersonaNatural sqlPN;
+	private SQLPersonaJuridica sqlPersonaJuridica;
 	
-	private SQLOferta sqlO;
+	private SQLOferta sqlOferta;
+	
+	private SQLAdicional sqlAdicional;
 	
 	private SQLReserva sqlReserva;
 	
-	private SQLOfertaApartamento sqlOA;
+	private SQLContrato sqlContrato;
 	
-	private SQLOfertaHabitacionMensual sqlOHM;
+	private SQLOfertaApartamento sqlOfertaApartamento;
 	
-	private SQLOfertaHabitacionDiaria sqlOHD;
+	private SQLOfertaHabitacionMensual sqlOfertaHabitacionMensual;
 	
-	private SQLOfertaViviendaUniversitaria sqlOVU;
+	private SQLOfertaHabitacionDiaria sqlOfertaHabitacionDiaria;
 	
-	private SQLOfertaEsporadica sqlOE;
+	private SQLOfertaViviendaUniversitaria sqlOfertaViviendaUniversitaria;
+	
+	private SQLOfertaEsporadica sqlOfertaEsporadica;
 	
 	/* ****************************************************************
 	 * 			MÃ©todos del MANEJADOR DE PERSISTENCIA
@@ -219,11 +223,19 @@ public class PersistenciaAlohAndes
 	 */
 	private void crearClasesSQL ()
 	{
-
-		
 		sqlCliente = new SQLCliente(this);
-		sqlPJ = new SQLPersonaJuridica(this);
+		sqlPersonaNatural = new SQLPersonaNatural(this);
+		sqlPersonaJuridica = new SQLPersonaJuridica(this);
+		sqlOferta= new SQLOferta(this);
+		sqlAdicional= new SQLAdicional(this);
 		
+		sqlReserva= new SQLReserva(this);
+		sqlContrato= new SQLContrato(this);
+		sqlOfertaApartamento= new SQLOfertaApartamento(this);
+		sqlOfertaEsporadica= new SQLOfertaEsporadica(this);
+		sqlOfertaHabitacionDiaria= new SQLOfertaHabitacionDiaria(this);
+		sqlOfertaHabitacionMensual= new SQLOfertaHabitacionMensual(this);
+		sqlOfertaViviendaUniversitaria= new SQLOfertaViviendaUniversitaria(this);
 	}
 
 	/**
@@ -242,12 +254,12 @@ public class PersistenciaAlohAndes
 		return tablas.get (1);
 	}
 	
-	public String darTablaPersonasJuridicas ()
+	public String darTablaPersonasNaturales ()
 	{
 		return tablas.get (2);
 	}
 	
-	public String darTablaPersonasNaturales ()
+	public String darTablaPersonasJuridicas ()
 	{
 		return tablas.get (3);
 	}
@@ -257,34 +269,49 @@ public class PersistenciaAlohAndes
 		return tablas.get (4);
 	}
 	
-	public String darTablaReservas()
+	public String darTablaAdicionales()
 	{
 		return tablas.get (5);
+	}
+	
+	public String darTablaInteresan()
+	{
+		return tablas.get (6);
+	}
+	
+	public String darTablaReservas()
+	{
+		return tablas.get (7);
+	}
+	
+	public String darTablaContratos()
+	{
+		return tablas.get (8);
 	}
 	
 	public String darTablaOfertaApartamento()
 	{
-		return tablas.get (5);
-	}
-	
-	public String darTablaOfertaHabitacionMensual()
-	{
-		return tablas.get (5);
-	}
-
-	public String darTablaOfertaHabitacionDiaria()
-	{
-		return tablas.get (5);
+		return tablas.get (9);
 	}
 	
 	public String darTablaOfertaEsporadica()
 	{
-		return tablas.get (5);
+		return tablas.get (10);
+	}
+	
+	public String darTablaOfertaHabitacionDiaria()
+	{
+		return tablas.get(11);
+	}
+	
+	public String darTablaOfertaHabitacionMensual()
+	{
+		return tablas.get (12);
 	}
 	
 	public String darTablaOfertaViviendaUniversitaria()
 	{
-		return tablas.get (5);
+		return tablas.get (13);
 	}
 
 	
@@ -342,7 +369,7 @@ public class PersistenciaAlohAndes
         }
 	}
 	
-	public PersonaJuridica adicionarPersonaJuridica(Integer nit, String nombre, String tipo, String horaApertura,
+	public PersonaJuridica adicionarPersonaJuridica(Long nit, String nombre, String tipo, String horaApertura,
 			String horaCierre, String userName, String contrasena) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -350,7 +377,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlPJ.adicionarPersonaJuridica(pm, nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+            long tuplasInsertadas = sqlPersonaJuridica.adicionarPersonaJuridica(pm, nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
@@ -383,7 +410,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlPN.adicionarPersonaNatural(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
+            long tuplasInsertadas = sqlPersonaNatural.adicionarPersonaNatural(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
 
             System.out.println(tuplasInsertadas);
             tx.commit();
@@ -409,19 +436,19 @@ public class PersistenciaAlohAndes
         }
 	}
 	
-	public Oferta adicionarOferta(Long id, String tipo_oferta) 
+	public Oferta adicionarOferta(Long id, String tipo_oferta, Boolean disponible, Integer precio) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlO.adicionarOferta(pm, id, tipo_oferta);
+            long tuplasInsertadas = sqlOferta.adicionarOferta(pm, id, tipo_oferta, disponible, precio);
             tx.commit();
 
             log.trace ("InserciÃ³n de oferta: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Oferta(id, tipo_oferta);
+            return new Oferta(id, tipo_oferta, disponible, precio);
         }
         catch (Exception e)
         {
@@ -509,7 +536,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOA.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
+            long tuplasInsertadas = sqlOfertaApartamento.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
@@ -542,7 +569,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOHM.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, precio);
+            long tuplasInsertadas = sqlOfertaHabitacionMensual.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, precio);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
@@ -575,7 +602,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOVU.adicionarOfertaViviendaUniversitaria(pm, id, capacidad,duracion,esCompartida, precio, id_operador);
+            long tuplasInsertadas = sqlOfertaViviendaUniversitaria.adicionarOfertaViviendaUniversitaria(pm, id, capacidad,duracion,esCompartida, precio, id_operador);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
@@ -609,7 +636,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOHD.adicionarOfertaHabitacionDiaria(pm, id, esCompartida, precio, ubicacion, id_operador);
+            long tuplasInsertadas = sqlOfertaHabitacionDiaria.adicionarOfertaHabitacionDiaria(pm, id, esCompartida, precio, ubicacion, id_operador);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
@@ -642,7 +669,7 @@ public class PersistenciaAlohAndes
         try
         {
             tx.begin();
-            long tuplasInsertadas = sqlOE.adicionarOfertaEsporadica(pm, id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion, precio);
+            long tuplasInsertadas = sqlOfertaEsporadica.adicionarOfertaEsporadica(pm, id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion, precio);
             System.out.println(tuplasInsertadas);
             tx.commit();
 

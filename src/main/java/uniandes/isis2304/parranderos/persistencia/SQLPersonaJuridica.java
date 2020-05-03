@@ -34,7 +34,7 @@ public class SQLPersonaJuridica {
 		this.pp = pp;
 	}
 	
-	public long adicionarPersonaJuridica(PersistenceManager pm, Integer nit, String nombre, String tipo, String horaApertura,
+	public long adicionarPersonaJuridica(PersistenceManager pm, Long nit, String nombre, String tipo, String horaApertura,
 			String horaCierre, String userName, String contrasena) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPersonasJuridicas() + "(nit, nombre, tipo, hora_apertura, hora_cierre, username, contrasena) values (?, ?, ?, ?, ?, ?, ?)");

@@ -35,10 +35,11 @@ public class SQLOfertaViviendaUniversitaria {
 	}
 	
 	public long adicionarOfertaViviendaUniversitaria (PersistenceManager pm, Long id,Integer capacidad, String duracion, 
-			Boolean esCompartida, Integer precio, Long id_operador) 
+			Boolean esCompartida, Long id_operador) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaViviendaUniversitaria() + "(id, capacidad, duracion, es_compartida, precio, id_operador) values (?, ?, ?, ?, ?, ?");
-        q.setParameters(id, capacidad,duracion,esCompartida, precio, id_operador);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaOfertaViviendaUniversitaria() 
+        + "(id, capacidad, duracion, es_compartida, id_operador) values (?, ?, ?, ?, ?");
+        q.setParameters(id, capacidad,duracion,esCompartida, id_operador);
         return (long) q.executeUnique();
 	}
 }
