@@ -56,7 +56,7 @@ public class AlohAndes {
 	}
 	
 	public Cliente adicionarCliente (Long numeroDocumento, String tipoDocumento, String nombre, String nacionalidad, 
-			String tipo, String userName, String contrasena)
+	String tipo, String userName, String contrasena)
 	{
         log.info ("Adicionando Cliente " + nombre);
         Cliente cliente = pA.adicionarCliente(numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
@@ -64,14 +64,6 @@ public class AlohAndes {
         return cliente;
 	}
 	
-	public PersonaJuridica adicionarPersonaJuridica (Long nit, String nombre, String tipo, String horaApertura,
-			String horaCierre, String userName, String contrasena)
-	{
-        log.info ("Adicionando pj " + nombre);
-        PersonaJuridica pj = new PersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
-        log.info ("Adicionando pj: " + pj);
-        return pj;
-	}
 	
 	public PersonaNatural adicionarPersonaNatural(Long numeroDocumento, String tipoDocumento, String nombre, String nacionalidad, 
 			String tipo, String userName, String contrasena)
@@ -82,6 +74,16 @@ public class AlohAndes {
         return pN;
 	}
 	
+	
+	public PersonaJuridica adicionarPersonaJuridica (Long nit, String nombre, String tipo, String horaApertura, String horaCierre,
+			String userName, String contrasena)
+	{
+        log.info ("Adicionando pj " + nombre);
+        PersonaJuridica pj = new PersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+        log.info ("Adicionando pj: " + pj);
+        return pj;
+	}
+	
 	public Oferta adicionarOferta(Long id, String tipoOferta, Boolean disponible, Integer precio)
 	{
         log.info ("Adicionando oferta " + id);
@@ -90,22 +92,11 @@ public class AlohAndes {
         return o;
 	}
 	
-	public OfertaApartamento adicionarOfertaApartamento(Long id, Integer capacidad, String descripcion, Boolean esAmoblado,
-			String ubicacion, Long docOperador, String tipoDocOperador, Integer precio)
-	{
-        log.info ("Adicionando oferta apartamento " + id);
-        OfertaApartamento pN = pA.adicionarOfertaApartamento(id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
-        log.info ("Adicionando oferta apartamento: " + pN);
-        return pN;
-	}
-	
-	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, Integer capacidad, String descripcion,
-			String ubicacion, Long docOperador, String tipoDocOperador, Integer precio)
-	{
-        log.info ("Adicionando oferta habitacion mensual " + id);
-        OfertaHabitacionMensual oHM = pA.adicionarOfertaHabitacionMensual(id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, precio);
-        log.info ("Adicionando oferta habitacion mensual: " +oHM);
-        return oHM;
+	public Adicional adicionarAdicional(Long id_oferta, String nombre, Integer precio){
+		log.info ("Adicionando Adicional " + id_oferta +","+ nombre);
+        Adicional a = pA.adicionarAdicional(id_oferta, nombre, precio);
+        log.info ("Adicionando adicional: " + a);
+        return a;
 	}
 	
 	public Reserva adicionarReserva(Long numeroReserva, String fechaInicio, String fechaFin, Long idOferta, 
@@ -125,4 +116,55 @@ public class AlohAndes {
         return resp;
 	}
 	
+	public Contrato adicionarContrato(Long numContrato, Integer duracion, Long numReserva)
+	{
+		log.info ("Adicionando contrato " + numContrato);
+		Contrato c = pA.adicionarContrato(numContrato, duracion, numReserva);
+		log.info ("Adicionando contrato: " +c);
+		return c;
+	}
+	
+	public OfertaApartamento adicionarOfertaApartamento(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, 
+			String descripcion, Boolean esAmoblado, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato)
+	{
+        log.info ("Adicionando oferta apartamento " + id);
+        OfertaApartamento pN = pA.adicionarOfertaApartamento(id, tipo, disponible, precio, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
+        log.info ("Adicionando oferta apartamento: " + pN);
+        return pN;
+	}
+	
+	public OfertaEsporadica adicionarOfertaEsporadica(Long id, String tipo, Boolean disponible, Integer precio, Integer duracion, 
+			String descripcion, String descripcion_seguro, Integer num_habitaciones, String ubicacion)
+	{
+		log.info ("Adicionando oferta esporadica " + id);
+        OfertaEsporadica oE = pA.adicionarOfertaEsporadica(id, tipo, disponible, precio, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
+        log.info ("Adicionando oferta esporadica: " + oE);
+        return oE;
+	}
+	
+	public OfertaHabitacionDiaria adicionarOfertaHabitacionDiaria(Long id, String tipo, Boolean disponible, Integer precio, Boolean esCompartida, String ubicacion, Long id_operador)
+	{
+		log.info ("Adicionando oferta esporadica " + id);
+        OfertaHabitacionDiaria oHD = pA.adicionarOfertaHabitacionDiaria(id, tipo, disponible, precio, esCompartida, ubicacion, id_operador);
+        log.info ("Adicionando oferta esporadica: " + oHD);
+        return oHD;
+	}
+	
+	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, String tipo, Boolean disponible, Integer precio, 
+			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato)
+	{
+        log.info ("Adicionando oferta habitacion mensual " + id);
+        OfertaHabitacionMensual oHM = pA.adicionarOfertaHabitacionMensual(id, tipo, disponible, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+        log.info ("Adicionando oferta habitacion mensual: " +oHM);
+        return oHM;
+	}
+
+	public OfertaViviendaUniversitaria adicionarOfertaViviendaUniversitaria(Long id, String tipo, Boolean disponible, 
+			Integer precio, Integer capacidad, String duracion, Boolean esCompartida, Long id_operador)
+	{
+		log.info ("Adicionando oferta vivienda universitaria " + id);
+		OfertaViviendaUniversitaria oVU = pA.adicionarOfertaViviendaUniversitaria(id, tipo, disponible, precio, capacidad, duracion, esCompartida, id_operador);
+		log.info ("Adicionando oferta vivienda universitaria: " +oVU);
+		return oVU;
+	}
 }
