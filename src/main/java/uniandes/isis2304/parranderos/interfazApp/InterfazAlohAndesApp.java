@@ -26,7 +26,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
@@ -48,9 +47,14 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.parranderos.negocio.AlohAndes;
 import uniandes.isis2304.parranderos.negocio.Oferta;
+import uniandes.isis2304.parranderos.negocio.VOAdicional;
 import uniandes.isis2304.parranderos.negocio.VOCliente;
+import uniandes.isis2304.parranderos.negocio.VOContrato;
 import uniandes.isis2304.parranderos.negocio.VOOfertaApartamento;
+import uniandes.isis2304.parranderos.negocio.VOOfertaEsporadica;
+import uniandes.isis2304.parranderos.negocio.VOOfertaHabitacionDiaria;
 import uniandes.isis2304.parranderos.negocio.VOOfertaHabitacionMensual;
+import uniandes.isis2304.parranderos.negocio.VOOfertaViviendaUniversitaria;
 import uniandes.isis2304.parranderos.negocio.VOPersonaJuridica;
 import uniandes.isis2304.parranderos.negocio.VOPersonaNatural;
 import uniandes.isis2304.parranderos.negocio.VOReserva;
@@ -244,7 +248,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     }
     
 	/* ****************************************************************
-	 * 			CRUD de TipoBebida
+	 * 			CRUD de la app
 	 *****************************************************************/
     
     
@@ -282,7 +286,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -292,15 +295,34 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     {
     	try 
     	{
-    		String id = JOptionPane.showInputDialog (this, "Numero de documento del cliente?", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
-    		Long numId = Long.parseLong(id);
+    		Long id = Long.parseLong(JOptionPane.showInputDialog (this, "Id de la oferta?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
     		
-    		String tipoOferta = JOptionPane.showInputDialog (this, "Tipo de documento del cliente? (CC,CE,TI o PA)", "Adicionar Cliente", JOptionPane.QUESTION_MESSAGE);
+    		String tipoOferta = JOptionPane.showInputDialog (this, "Tipo de la oferta (VIVIENDA UNVERSITARIA, HABITACION DIARIA, "
+    				+ "HABITACION MENSUAL, ESPORADICA O APARTAMENTO)?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE);
     		
+    		Boolean disponible = Boolean.parseBoolean(JOptionPane.showInputDialog(this, "¿Está disponible? (true/false)","Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
+    		
+    		Integer precio = Integer.parseInt(JOptionPane.showInputDialog(this,"Ingrese el precio","Adicionar Oferta",JOptionPane.QUESTION_MESSAGE));
     		if (id != null && tipoOferta != null)
     		{
-        		Oferta o = alohAndes.adicionarOferta(numId, tipoOferta);
+        		Oferta o = alohAndes.adicionarOferta(id, tipoOferta, disponible, precio);
 
+        		if(tipoOferta.equalsIgnoreCase("vivienda universitaria"))
+        			adicionarOfertaViviendaUniversitaria(id, disponible, precio);
+        		
+        		else if(tipoOferta.equalsIgnoreCase("HABITACION DIARIA"))
+        			adicionarOfertaHabitacionDiaria(id, disponible, precio);
+        		
+        		else if(tipoOferta.equalsIgnoreCase("HABITACION MENSUAL"))
+        			adicionarOfertaHabitacionMensual(id, disponible, precio);
+        		
+        		else if(tipoOferta.equalsIgnoreCase("ESPORADICA"))
+        			adicionarOfertaEsporadica(id, disponible, precio);
+        		
+        		else if(tipoOferta.equalsIgnoreCase("APARTAMENTO"))
+        			adicionarOfertaApartamento(id, disponible, precio);
+        		
+        		
         		if (o == null)
         		{
         			throw new Exception ("No se pudo crear un oferta de id: " + id);
@@ -312,24 +334,50 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		}
     		else
     		{
-    			panelDatos.actualizarInterfaz("OperaciÃ³n cancelada por el usuario");
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
     		}
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
     
+    public void adicionarAdicional()
+    {
+    	try 
+    	{
+			Long id_oferta = Long.parseLong(JOptionPane.showInputDialog (this, "Ingrese el id de la oferta", "Adicionar servicio adicional", JOptionPane.QUESTION_MESSAGE));
+			String nombre= JOptionPane.showInputDialog (this, "Ingrese el nombre del servicio ", "Adicionar servicio adicional", JOptionPane.QUESTION_MESSAGE);
+			Integer precio= Integer.parseInt(JOptionPane.showInputDialog (this, "Ingrese el precio del servicio ", "Adicionar servicio adicional", JOptionPane.QUESTION_MESSAGE));
+			
+			if(id_oferta!=null && nombre!=null && precio!=null)
+			{
+				VOAdicional adicional= alohAndes.adicionarAdicional(id_oferta, nombre, precio);
+				
+				if(adicional==null)
+					throw new Exception("No se pudo crear el adicional asociado a la oferta:" +Long.toString(id_oferta)+ ", con nombre:"+nombre);
+				
+				String resultado = "En adicionarAdicional\n\n";
+        		resultado += "Adicional adicionada exitosamente: " + adicional;
+    			resultado += "\n OperaciÃ³n terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+				panelDatos.actualizarInterfaz("OperaciÃ³n cancelada por el usuario");
+		}
+    	catch (Exception e) {
+			
+		}
+    }
     
     public void adicionarPersonaJuridica( )
     {
     	try 
     	{
     		String nit = JOptionPane.showInputDialog (this, "Numero de nit de la empresa?", "Adicionar operador", JOptionPane.QUESTION_MESSAGE);
-    		Integer numNit = Integer.parseInt(nit);
+    		Long numNit = Long.parseLong(nit);
     		
     		String nombre = JOptionPane.showInputDialog (this, "nombre? ", "Adicionar operador", JOptionPane.QUESTION_MESSAGE);
     		String tipo = JOptionPane.showInputDialog (this, "tipo?", "Adicionar operador", JOptionPane.QUESTION_MESSAGE);
@@ -358,7 +406,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -398,7 +445,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -407,7 +453,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     {
     	try {
     		
-    		String res = JOptionPane.showInputDialog (this, "Qué tipo de operador desea agregar?", "Adicionar operador", JOptionPane.QUESTION_MESSAGE);
+    		String res = JOptionPane.showInputDialog (this, "Qué tipo de operador desea agregar? (persona natural o persona juridica)", "Adicionar operador", JOptionPane.QUESTION_MESSAGE);
 
     		if(res.equalsIgnoreCase("Persona Juridica")){
     			
@@ -427,7 +473,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     }
     
     
-    public void adicionarOfertaHabitacionDiaria(Long id)
+    private void adicionarOfertaHabitacionDiaria(Long id, Boolean disponible, Integer precio)
 	{
 		try 
 		{
@@ -438,19 +484,17 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 			else if (compartida.equalsIgnoreCase("no"))
 				esCompartida=false;
 
-			Integer precio= Integer.parseInt(JOptionPane.showInputDialog (this, "¿Cuál es el precio?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
-
 			String ubicacion= JOptionPane.showInputDialog (this, "¿Cuál es la ubicación?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE);
 
 			Long id_operador= Long.parseLong(JOptionPane.showInputDialog (this, "¿Cuál es el id del operador?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
 
 			if (id!=null && esCompartida!=null && precio!=null && ubicacion!=null && id_operador!=null)
 			{
-				VOOfertaHabitacionDiaria c = alohAndes.adicionarOfertaHabitacionDiaria(id, esCompartida, precio, ubicacion, id_operador);
+				VOOfertaHabitacionDiaria c = alohAndes.adicionarOfertaHabitacionDiaria(id, "HABITACION DIARIA", disponible, precio, esCompartida, ubicacion, id_operador);
 				System.out.println(c);
 				if (c == null)
 				{
-					throw new Exception ("No se pudo crear un Cliente de documento: " + id);
+					throw new Exception ("No se pudo crear una ofertaHabitaciónDiaria de id: " + id);
 				}
 				String resultado = "En adicionarofertaHabitacionDiaria\n\n";
 				resultado += "OfertaHabitacionDiaria adicionada exitosamente: " + c;
@@ -469,7 +513,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	public void adicionarOfertaViviendaUniversitaria(Long id)
+	private void adicionarOfertaViviendaUniversitaria(Long id, Boolean disponible, Integer precio)
 	{
 		try 
 		{
@@ -484,18 +528,16 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 			else if(compartida.equalsIgnoreCase("no"))
 				esCompartida=false;
 
-			Integer precio= Integer.parseInt(JOptionPane.showInputDialog (this, "¿Cuál es el precio?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
-
 			Long id_operador= Long.parseLong(JOptionPane.showInputDialog (this, "¿Cuál es el id del operador?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
 			
 			if (id!=null && capacidad != null && duracion!=null && esCompartida!=null && precio!= null 
 					&& id_operador != null)
 			{
-				VOOfertaViviendaUniversitaria c = alohAndes.adicionarOfertaViviendaUniversitaria(id, capacidad, duracion, esCompartida, precio, id_operador);
+				VOOfertaViviendaUniversitaria c = alohAndes.adicionarOfertaViviendaUniversitaria(id, "VIVIENDA UNIVERSITARIA", disponible, precio, capacidad, duracion, esCompartida, id_operador);
 				System.out.println(c);
 				if (c == null)
 				{
-					throw new Exception ("No se pudo crear una oferta con id: " + id);
+					throw new Exception ("No se pudo crear una ofertaViviendaUniversitaria con id: " + id);
 				}
 				String resultado = "En adicionar OfertaViviendaUniversitaria\n\n";
 				resultado += "OfertaViviendaUniversitaria adicionado exitosamente: " + c;
@@ -515,7 +557,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 	}
 
 	
-	public void adicionarOfertaEsporadica(Long id )
+	private void adicionarOfertaEsporadica(Long id, Boolean disponible, Integer precio )
 	{
 		try 
 		{
@@ -529,12 +571,10 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 
 			String ubicacion=JOptionPane.showInputDialog (this, "Agregue la ubicación.", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE);
 			
-			Integer precio= Integer.parseInt(JOptionPane.showInputDialog (this, "¿Cuál es el precio?", "Adicionar Oferta", JOptionPane.QUESTION_MESSAGE));
-
 			if (id != null && duracion != null && descripcion != null  && descripcion_seguro != null && num_habitaciones != null 
 					&& ubicacion != null && precio!= null )
 			{
-				VOOfertaEsporadica c = alohAndes.adicionarOfertaEsporadica(id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion, precio);
+				VOOfertaEsporadica c = alohAndes.adicionarOfertaEsporadica(id, "ESPORADICA", disponible, precio, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
 				System.out.println(c);
 				if (c == null)
 				{
@@ -594,7 +634,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -608,7 +647,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		Long lId =Long.parseLong(id);
     		if (id != null)
     		{
-    			long idTipo = Long.valueOf (id);
     			long tbEliminados = alohAndes.eliminarReservaPorNumero(lId);
 
     			String resultado = "En eliminar TipoBebida\n\n";
@@ -630,7 +668,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     }
     
     
-    private void adicionarOfertaApartamento(Long id)
+    private void adicionarOfertaApartamento(Long id, Boolean disponible, Integer precio)
     {
     	try 
     	{
@@ -649,19 +687,18 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		Long docOperador = Long.parseLong(operador);
     		
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del operador? (CC,CE,TI o PA)", "Adicionar oferta apartamento", JOptionPane.QUESTION_MESSAGE);
-    		String precio = JOptionPane.showInputDialog (this, "Precio de la oferta?", "Adicionar oferta apartamento", JOptionPane.QUESTION_MESSAGE);
-    		Integer intPrecio = Integer.parseInt(precio);
+    		
+    		Long numContrato= Long.parseLong(JOptionPane.showInputDialog(this, "¿Cuál es número del contrato?", "Adicionar contrato", JOptionPane.QUESTION_MESSAGE));
     		
     		if (id != null && cap != null && descripcion != null  && amoblado != null && ubicacion != null 
-    				&& operador != null && tipoDoc != null && precio != null)
+    				&& operador != null && tipoDoc != null && precio != null && numContrato!=null)
     		{
-
-    			VOOfertaApartamento oA = alohAndes.adicionarOfertaApartamento(id, numCap, descripcion, esAmo, ubicacion, docOperador, tipoDoc, intPrecio);
+    			VOOfertaApartamento oA = alohAndes.adicionarOfertaApartamento(id, "APARTAMENTO", disponible, precio, numCap, descripcion, esAmo, ubicacion, docOperador, tipoDoc, numContrato);
     			if (oA == null)
         		{
         			throw new Exception ("No se pudo crear una oferta apartamento: " + id);
         		}
-        		String resultado = "En adicionarCliente\n\n";
+        		String resultado = "En adicionarOfertaApartamento\n\n";
         		resultado += "oferta apartamento adicionada exitosamente: " + id;
     			resultado += "\n OperaciÃ³n terminada";
     			panelDatos.actualizarInterfaz(resultado);
@@ -673,13 +710,12 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
-//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
     
-    private void adicionarOfertaHabitacionMensual(Long id)
+    private void adicionarOfertaHabitacionMensual(Long id, Boolean disponible, Integer precio)
     {
     	try 
     	{
@@ -694,14 +730,12 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		Long docOperador = Long.parseLong(operador);
     		
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del operador? (CC,CE,TI o PA)", "Adicionar oferta apartamento", JOptionPane.QUESTION_MESSAGE);
-    		String precio = JOptionPane.showInputDialog (this, "Precio de la oferta?", "Adicionar oferta habitacion mensual", JOptionPane.QUESTION_MESSAGE);
-    		Integer intPrecio = Integer.parseInt(precio);
-    		
+    		Long contrato= Long.parseLong(JOptionPane.showInputDialog(this, "¿Cuál es número del contrato?", "Adicionar contrato", JOptionPane.QUESTION_MESSAGE));
     		if (id != null && cap != null && descripcion != null && ubicacion != null 
     				&& operador != null && tipoDoc != null && precio != null)
     		{
 
-    			VOOfertaHabitacionMensual oA = alohAndes.adicionarOfertaHabitacionMensual(id, numCap, descripcion, ubicacion, docOperador, tipoDoc, intPrecio);
+    			VOOfertaHabitacionMensual oA = alohAndes.adicionarOfertaHabitacionMensual(id, "HABITACION MENSUAL", disponible, precio, numCap, descripcion, ubicacion, docOperador, tipoDoc, contrato);
     			if (oA == null)
         		{
         			throw new Exception ("No se pudo crear una oferta habitacion mensual: " + id);
@@ -725,8 +759,38 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     }
     
     
-    
-    
+    public void adicionarContrato()
+    {
+    	try{
+    		Long id= Long.parseLong(JOptionPane.showInputDialog(this, "Ingrese el numero del contrato", "Adicionar Contrato",JOptionPane.QUESTION_MESSAGE));
+    		Integer duracion =Integer.parseInt(JOptionPane.showInputDialog(this, "Cuantos meses dura el contrato?", "Adicionar Contrato",JOptionPane.QUESTION_MESSAGE));
+    		Long numReserva= Long.parseLong(JOptionPane.showInputDialog(this, "Ingrese el numero de la reserva", "Adicionar Contrato",JOptionPane.QUESTION_MESSAGE));
+
+    		if (id != null && duracion != null && numReserva != null )
+    		{
+
+    			VOContrato oA = alohAndes.adicionarContrato(id, duracion, numReserva);
+    			if (oA == null)
+    			{
+    				throw new Exception ("No se pudo crear El contrato con numero: " + id);
+    			}
+    			String resultado = "En adicionarContrato\n\n";
+    			resultado += "Contrato adicionado exitosamente: " + id;
+    			resultado += "\n OperaciÃ³n terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("OperaciÃ³n cancelada por el usuario");
+    		}
+    	} 
+    	catch (Exception e) {
+    		String resultado = generarMensajeError(e);
+    		panelDatos.actualizarInterfaz(resultado);
+    	}
+
+    }
+
    
 
 	/* ****************************************************************
