@@ -62,4 +62,24 @@ public class SQLReserva {
 		//System.out.println(q.executeList().size());
 		return (List<Reserva>) q.executeResultList(Reserva.class);
 	}
+	
+	public List<Reserva> darReservasPornumero(PersistenceManager pm, Long idReserva)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE num_reserva = ? " );
+		q.setParameters(idReserva);
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
+	public List<Reserva> darReservasOfertaEnFecha(PersistenceManager pm, Long idReserva, String fechaI, String fechaF)
+	{
+		
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE id_oferta = ? AND fecha_inicio <= ? AND fecha_fin >= ?" );
+		q.setParameters(idReserva,fechaI,fechaF);
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
 }

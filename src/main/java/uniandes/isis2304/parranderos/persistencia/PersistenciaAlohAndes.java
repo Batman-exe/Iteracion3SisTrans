@@ -808,6 +808,10 @@ public class PersistenciaAlohAndes
 		return sqlOferta.darOfertas (pmf.getPersistenceManager());
 	}
 	
+	public List<Oferta> darOfertasPorTipo (String tipo)
+	{
+		return sqlOferta.darOfertasTipo(pmf.getPersistenceManager(), tipo);
+	}
 	/**
 	 * Método que consulta todas las tuplas en la tabla TipoBebida
 	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
@@ -817,10 +821,20 @@ public class PersistenciaAlohAndes
 		return sqlAdicional.darAdicionales(pmf.getPersistenceManager());
 	}
 	
+	public Adicional darAdicionalesPorOfertaYNombre(long idOferta, String nombre)
+	{
+		return sqlAdicional.darAdicionalPorOfertaYNombre(pmf.getPersistenceManager(), idOferta, nombre);
+	}
+	
 	
 	public List<Reserva> darReservas()
 	{
 		return sqlReserva.darReservas(pmf.getPersistenceManager());
+	}
+	
+	public List<Reserva> darReservasOfertaEnFecha(Long idReserva, String fechaI, String fechaF)
+	{
+		return sqlReserva.darReservasOfertaEnFecha(pmf.getPersistenceManager(), idReserva, fechaI, fechaF);
 	}
 	/**
 	 * Método que consulta todas las tuplas en la tabla TipoBebida

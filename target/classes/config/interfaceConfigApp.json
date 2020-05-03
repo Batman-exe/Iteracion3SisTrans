@@ -5,7 +5,7 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Isertar",
+		{ "menuTitle": "Insertar",
 		  "options":
 			[
 				{
@@ -17,8 +17,16 @@
 					"event": "adicionarOperador"
 				},
 				{
+					"label": "Adicionar Oferta",
+					"event": "adicionarOferta"
+				},
+				{
 					"label": "Adicionar Reserva",
 					"event": "adicionarReserva"
+				},
+				{
+					"label": "Adicionar Adicional",
+					"event": "adicionarAdicional"
 				},
 				{
 					"label": "Borrar por Id",
@@ -36,6 +44,31 @@
 				{
 					"label": "Eliminar Reserva",
 					"event": "eliminarReservaPorId"
+				}
+			]
+		},
+		{ "menuTitle": "Buscar",
+		  "options":
+			[
+				{
+					"label": "Buscar Oferta",
+					"event": "buscarOfertaPorId"
+				},
+				{
+					"label": "Listar Ofertas",
+					"event": "listarOfertas"
+				},
+				{
+					"label": "Listar Ofertas Apartamento",
+					"event": "listarOfertasApartamento"
+				},
+				{
+					"label": "Listar Adicionales",
+					"event": "listarAdicionales"
+				},
+				{
+					"label": "Listar Reservas",
+					"event": "listarReservas"
 				}
 			]
 		},

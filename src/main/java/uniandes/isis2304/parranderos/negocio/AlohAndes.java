@@ -1,5 +1,6 @@
 package uniandes.isis2304.parranderos.negocio;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,6 +49,80 @@ public class AlohAndes {
 	public AlohAndes (JsonObject tableConfig)
 	{
 		pA = PersistenciaAlohAndes.getInstance (tableConfig);
+	}
+	
+	
+	public List<VOReserva> RF7(String tipoOferta,Long numReserva, String fechaI, String fechaF, Long docCliente, 
+			String tipoDoc, String fechaCancelacion, int cantidad, String[] adicionales) throws Exception
+	{
+		List<VOReserva> res = new LinkedList<VOReserva>();
+		
+		List<Oferta> libres = ofertasLibres(tipoOferta, fechaI, fechaF);
+		
+		for(Oferta o: libres){
+			System.out.println(o);
+		}
+		if(libres.size()>= cantidad){
+			
+			int cont = 0;
+			Iterator<Oferta> it = libres.iterator();
+			while(cont <= cantidad && it.hasNext())
+			{
+				Oferta o = it.next();
+				if(ofertaTieneAdicionales(Long.parseLong(o.getId()), adicionales)){	
+					
+					log.info ("Adicionando reserva " + numReserva);
+					Reserva nueva = adicionarReserva(numReserva, fechaI, fechaF, Long.parseLong(o.getId()), docCliente, tipoDoc, fechaCancelacion);
+					log.info ("Adicionando reserva: " + nueva);
+					res.add(nueva);
+				}
+				else
+				{
+					throw new Exception("No hay suficientes ofertan que cumplan con los adicionales esperados");
+				}
+			}
+			
+		}
+		else
+		{
+			throw new Exception("No hay suficientes ofertas libres");
+		}
+		
+		
+		
+		return res;
+	}
+	
+	private List<Oferta> ofertasLibres( String tipoOferta, String fechaI, String fechaF){
+		List<Oferta> res = new LinkedList<Oferta>();
+		List<Oferta> ofertas = pA.darOfertasPorTipo(tipoOferta);
+		for(Oferta o: ofertas){
+			
+			List<Reserva> reservasEnfecha = pA.darReservasOfertaEnFecha(Long.parseLong(o.getId()), fechaI, fechaF);
+			if(reservasEnfecha.size()== 0){
+				
+				res.add(o);
+			}
+		}
+		
+		return res;
+	}
+	
+	private boolean ofertaTieneAdicionales(Long idOferta, String[]adicionales){
+		
+		boolean res =  false;
+		for(String a: adicionales){
+			
+			Adicional adi= pA.darAdicionalesPorOfertaYNombre(idOferta, a);
+			if(adi != null)
+				res = true;
+			else
+				res = false;
+			
+		}
+		
+		return res;
+		
 	}
 	
 	/**
@@ -212,6 +287,33 @@ public class AlohAndes {
 		log.info ("Generando los VO de Tipos de bebida");        
         List<VOReserva> voTipos = new LinkedList<VOReserva> ();
         for (Reserva tb : pA.darReservas())
+        {
+        	voTipos.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
+        return voTipos;
+	}
+	
+	public List<Reserva> darReservasOfertaEnFecha(Long idReserva, String fechaI, String fechaF)
+	{
+		log.info ("Consultando Tipos de bebida");
+        List<Reserva> tiposBebida = pA.darReservasOfertaEnFecha(idReserva, fechaI, fechaF);	
+        log.info ("Consultando Tipos de bebida: " + tiposBebida.size() + " existentes");
+        return tiposBebida;
+	}
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos y los devuelve como una lista de VOTipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * @param idReserva 
+	 * @param fechaI 
+	 * @param fechaF 
+	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que conoce la aplicación, llenos con su información básica
+	 */
+	public List<VOReserva> darVOReservasOfertaEnFecha(Long idReserva, String fechaI, String fechaF)
+	{
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOReserva> voTipos = new LinkedList<VOReserva> ();
+        for (Reserva tb : pA.darReservasOfertaEnFecha(idReserva, fechaI, fechaF))
         {
         	voTipos.add (tb);
         }

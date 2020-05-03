@@ -51,4 +51,13 @@ public class SQLAdicional {
 		//System.out.println(q.executeList().size());
 		return (List<Adicional>) q.executeResultList(Adicional.class);
 	}
+	
+	public Adicional darAdicionalPorOfertaYNombre (PersistenceManager pm, long idOferta, String nombre) 
+	{
+		System.out.println(idOferta);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdicionales() + " WHERE id_oferta = ? AND nombre = ?");
+		q.setResultClass(Adicional.class);
+		q.setParameters(idOferta, nombre);
+		return (Adicional) q.executeUnique();
+	}
 }

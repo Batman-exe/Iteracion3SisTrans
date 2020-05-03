@@ -882,6 +882,67 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
 		}
     }
     
+    public void listarReservasOfertaEnFecha( )
+    {
+    	try 
+    	{
+    		Long idOferta= Long.parseLong(JOptionPane.showInputDialog(this, "Ingrese el id de la oferta", "Buscar Reservas por Oferta y fecha",JOptionPane.QUESTION_MESSAGE));
+    		String fechaI = JOptionPane.showInputDialog(this, "Ingrese la fecha inicial (DD/MM/YYYY)", "Buscar Reservas por Oferta y fecha",JOptionPane.QUESTION_MESSAGE);
+    		String fechaF = JOptionPane.showInputDialog(this, "Ingrese la fecha final (DD/MM/YYYY)", "Buscar Reservas por Oferta y fecha",JOptionPane.QUESTION_MESSAGE);
+    		
+    		List <VOReserva> lista = alohAndes.darVOReservasOfertaEnFecha(idOferta, fechaI, fechaF);
+
+			String resultado = "En listarTipoBebida";
+			resultado +=  "\n" + listarReservas (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void RF7()
+    {
+    	try 
+    	{
+    		String tipoOferta = JOptionPane.showInputDialog(this, "Ingrese el tipo de oferta(VIVIENDA UNVERSITARIA, HABITACION DIARIA, "
+    				+ "HABITACION MENSUAL, ESPORADICA O APARTAMENTO)", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		
+    		Long numReserva= Long.parseLong(JOptionPane.showInputDialog(this, "Ingrese el numero de la nueva reserva", "RF7",JOptionPane.QUESTION_MESSAGE));
+    		String fechaI = JOptionPane.showInputDialog(this, "Ingrese la fecha inicial (DD/MM/YYYY)", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		String fechaF = JOptionPane.showInputDialog(this, "Ingrese la fecha final (DD/MM/YYYY)", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		Long docCliente= Long.parseLong(JOptionPane.showInputDialog(this, "Ingrese el numero de documento del cliente", "RF7",JOptionPane.QUESTION_MESSAGE));
+    		String tipoDoc = JOptionPane.showInputDialog(this, "Ingrese el tipo de documento(CC, CE, TI o PA)", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		String fechaCancelacion = JOptionPane.showInputDialog(this, "Ingrese la fecha de cancelacion (DD/MM/YYYY)", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		Integer cantidad= Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la cantidad de ofertas a solicitar", "RF7",JOptionPane.QUESTION_MESSAGE));
+    		String ad = JOptionPane.showInputDialog(this, "Ingrese los adicionales desados separados por una ,", "RF7",JOptionPane.QUESTION_MESSAGE);
+    		ad.trim();
+    		String[] adicionales = ad.split(",");
+
+
+    		List<VOReserva> rf7 = alohAndes.RF7(tipoOferta, numReserva, fechaI, fechaF, docCliente, tipoDoc, fechaCancelacion, cantidad, adicionales);
+
+    		String resultado = "En adicionarReserva\n\n";
+    		resultado +=  "\n" + listarReservas (rf7);
+			resultado += "\n OperaciÃ³n terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+    	catch (Exception e) 
+    	{
+    		e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    	
+    	
+    }
     /**
      * Genera una cadena de caracteres con la lista de los tipos de bebida recibida: una línea por cada tipo de bebida
      * @param lista - La lista con los tipos de bebida

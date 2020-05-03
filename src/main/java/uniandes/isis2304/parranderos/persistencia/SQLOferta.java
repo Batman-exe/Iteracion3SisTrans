@@ -81,4 +81,13 @@ public class SQLOferta {
 		//System.out.println(q.executeList().size());
 		return (List<Oferta>) q.executeResultList(Oferta.class);
 	}
+	
+	public List<Oferta> darOfertasTipo (PersistenceManager pm, String tipo)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOfertas() + " WHERE tipo_oferta = ?");
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		q.setParameters(tipo);
+		return (List<Oferta>) q.executeResultList(Oferta.class);
+	}
 }
