@@ -79,7 +79,7 @@ public class AlohAndes {
 			String userName, String contrasena)
 	{
         log.info ("Adicionando pj " + nombre);
-        PersonaJuridica pj = new PersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+        PersonaJuridica pj = pA.adicionarPersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
         log.info ("Adicionando pj: " + pj);
         return pj;
 	}

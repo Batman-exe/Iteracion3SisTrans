@@ -365,6 +365,7 @@ public class PersistenciaAlohAndes
 		{
 			if (tx.isActive())
 			{
+				System.out.println("gdiogaiudogaiogjidasjg");
 				tx.rollback();
 			}
 			pm.close();
@@ -416,6 +417,7 @@ public class PersistenciaAlohAndes
 		{
 			tx.begin();
 			long tuplasInsertadas = sqlPersonaJuridica.adicionarPersonaJuridica(pm, nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+			System.out.println("fdfdasgasga");
 			System.out.println(tuplasInsertadas);
 			tx.commit();
 
@@ -435,6 +437,7 @@ public class PersistenciaAlohAndes
 			if (tx.isActive())
 			{
 				tx.rollback();
+				System.out.println("no funcionó");
 			}
 			pm.close();
 		}

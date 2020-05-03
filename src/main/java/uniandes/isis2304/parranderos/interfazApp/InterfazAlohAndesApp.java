@@ -390,6 +390,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		{
 
         		VOPersonaJuridica pj = alohAndes.adicionarPersonaJuridica(numNit, nombre, tipo, horaApertura, horaCierre, username, contrasena);
+        		System.out.println(pj);
     			if (pj == null)
         		{
         			throw new Exception ("No se pudo crear un PJ de documento: " + numNit);
