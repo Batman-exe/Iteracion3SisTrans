@@ -55,6 +55,14 @@ public class SQLReserva {
         return (long) q.executeUnique();
 	}
 	
+	public long eliminarReservaNumeroReserva (PersistenceManager pm, Long idReserva)
+	{
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservas() + " WHERE num_reserva = ? ");
+        q.setParameters(idReserva);
+        
+        return (long) q.executeUnique();
+	}
+	
 	public List<Reserva> darReservas(PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() );
@@ -63,10 +71,27 @@ public class SQLReserva {
 		return (List<Reserva>) q.executeResultList(Reserva.class);
 	}
 	
+	public Reserva darUltimaReserva(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL,"SELECT * FROM "+ " (SELECT * FROM " + pp.darTablaReservas() +" ORDER BY num_reserva DESC) "+ " WHERE ROWNUM = 1 "  );
+		q.setResultClass(Reserva.class);
+		//System.out.println(q.executeList().size());
+		return (Reserva) q.executeUnique();
+	}
+	
 	public List<Reserva> darReservasPornumero(PersistenceManager pm, Long idReserva)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE num_reserva = ? " );
 		q.setParameters(idReserva);
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
+	public List<Reserva> darReservasOferta(PersistenceManager pm, Long idOferta)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE id_oferta = ? " + "ORDER BY fecha_inicio ASC");
+		q.setParameters(idOferta);
 		//q.setResultClass(Oferta.class);
 		//System.out.println(q.executeList().size());
 		return (List<Reserva>) q.executeResultList(Reserva.class);

@@ -114,6 +114,37 @@ public class Reserva implements VOReserva{
 	public void setFecha_cancelacion(Date fecha_cancelacion) {
 		this.fecha_cancelacion = fecha_cancelacion;
 	}
+	
+	public String getCadenaFechaInicial(){
+		String fecha =""+ fecha_inicio;
+		
+		String año = fecha.split(" ")[0].split("-")[0];
+		String mes = fecha.split(" ")[0].split("-")[1];
+		String dia = fecha.split(" ")[0].split("-")[2];
+		
+
+		return dia+"/"+mes+"/"+año;
+	}
+	
+	public String getCadenaFechaFinal(){
+		String fecha =""+ fecha_fin;
+		
+		String año = fecha.split(" ")[0].split("-")[0];
+		String mes = fecha.split(" ")[0].split("-")[1];
+		String dia = fecha.split(" ")[0].split("-")[2];
+
+		return dia+"/"+mes+"/"+año;
+	}
+	
+	public String getCadenaFechaCancelacion(){
+		String fecha =""+ fecha_cancelacion;
+		
+		String año = fecha.split(" ")[0].split("-")[0];
+		String mes = fecha.split(" ")[0].split("-")[1];
+		String dia = fecha.split(" ")[0].split("-")[2];
+
+		return dia+"/"+mes+"/"+año;
+	}
 
 
 	@Override

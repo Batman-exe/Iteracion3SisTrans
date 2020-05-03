@@ -553,7 +553,7 @@ public class PersistenciaAlohAndes
 		}
 	}
 
-	public long eliminarReservaPorNumero (Long numReserva, Long idOferta) 
+	public long eliminarReserva(Long numReserva, Long idOferta) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -561,6 +561,34 @@ public class PersistenciaAlohAndes
 		{
 			tx.begin();
 			long resp = sqlReserva.eliminarReserva(pm, numReserva, idOferta);
+			tx.commit();
+
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public long eliminarReservaPorNumero (Long numReserva) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlReserva.eliminarReservaNumeroReserva(pm, numReserva);
 			tx.commit();
 
 			return resp;
@@ -797,6 +825,32 @@ public class PersistenciaAlohAndes
 		}
 	}
 
+	public long cambiarOfertaDisponible(Long idOferta, Boolean disponible){
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlOferta.cambiarDisponible(pm, idOferta, disponible);
+			tx.commit();
+
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 	
 	
 	/**
@@ -836,6 +890,16 @@ public class PersistenciaAlohAndes
 	{
 		return sqlReserva.darReservasOfertaEnFecha(pmf.getPersistenceManager(), idReserva, fechaI, fechaF);
 	}
+	
+	public List<Reserva> darReservasOferta(Long idOferta)
+	{
+		return sqlReserva.darReservasOferta(pmf.getPersistenceManager(), idOferta);
+	} 
+	
+	public Reserva darUltimaReserva()
+	{
+		return sqlReserva.darUltimaReserva(pmf.getPersistenceManager());
+	} 
 	/**
 	 * Método que consulta todas las tuplas en la tabla TipoBebida
 	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
@@ -854,7 +918,6 @@ public class PersistenciaAlohAndes
 	public Oferta darOfertaPorId (long idOferta)
 	{
 		Oferta res = sqlOferta.darOfertaPorId (pmf.getPersistenceManager(), idOferta);
-		System.out.println(res);
 		return sqlOferta.darOfertaPorId (pmf.getPersistenceManager(), idOferta);
 	}
 }

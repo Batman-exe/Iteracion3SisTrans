@@ -90,4 +90,13 @@ public class SQLOferta {
 		q.setParameters(tipo);
 		return (List<Oferta>) q.executeResultList(Oferta.class);
 	}
+	
+	public long cambiarDisponible (PersistenceManager pm,Long idOferta, Boolean disponible)
+	{
+		Query q = pm.newQuery(SQL, "UPDATE  " + pp.darTablaOfertas() +" SET disponible = ? "+ " WHERE id_oferta = ?");
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		q.setParameters(disponible, idOferta);
+		return (long) q.executeUnique();
+	}
 }
