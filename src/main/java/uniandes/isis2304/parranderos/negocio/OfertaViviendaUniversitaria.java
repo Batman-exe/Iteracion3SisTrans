@@ -26,10 +26,10 @@ public class OfertaViviendaUniversitaria extends Oferta implements VOOfertaVivie
 	
 	
 	
-	public OfertaViviendaUniversitaria(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, String duracion,
+	public OfertaViviendaUniversitaria(String id, String tipo, Integer disponible, Integer precio, Integer capacidad, String duracion,
 			Boolean esCompartida, Long id_operador) {
-		super.setId(id);
-		super.setTipo(tipo);
+		super.setId_oferta(id);
+		super.setTipo_oferta(tipo);
 		super.setDisponible(disponible);
 		super.setPrecio(precio);
 		this.capacidad = capacidad;

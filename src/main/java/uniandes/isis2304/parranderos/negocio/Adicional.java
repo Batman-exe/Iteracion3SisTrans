@@ -2,18 +2,21 @@ package uniandes.isis2304.parranderos.negocio;
 
 public class Adicional implements VOAdicional{
 
-	private Long id_oferta;
+	private String id_oferta;
 	
 	private String nombre;
 
-	private Integer precio;
+	private int precio;
 
 	public Adicional()
 	{
-
+		this.id_oferta = "Default";
+		this.nombre = "Default";
+		this.precio = 0;
+		
 	}
 
-	public Adicional(Long id_oferta, String nombre, Integer precio)
+	public Adicional(String id_oferta, String nombre, Integer precio)
 	{
 		this.id_oferta = id_oferta;
 		this.nombre=nombre;
@@ -22,11 +25,11 @@ public class Adicional implements VOAdicional{
 	
 	
 
-	public Long getId_oferta() {
+	public String getId_oferta() {
 		return id_oferta;
 	}
 
-	public void setId_oferta(Long id_oferta) {
+	public void setId_oferta(String id_oferta) {
 		this.id_oferta = id_oferta;
 	}
 
@@ -48,8 +51,10 @@ public class Adicional implements VOAdicional{
 
 	@Override
 	public String toString() {
-		return "Adicional [nombre=" + nombre + ", precio=" + precio + "]";
+		return "Adicional [id_oferta=" + id_oferta + ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
+
+	
 
 
 }

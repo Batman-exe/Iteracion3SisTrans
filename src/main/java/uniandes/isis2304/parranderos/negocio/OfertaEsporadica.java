@@ -20,10 +20,10 @@ public class OfertaEsporadica extends Oferta implements VOOfertaEsporadica {
 
 	}
 
-	public OfertaEsporadica(Long id, String tipo, Boolean disponible, Integer precio, Integer duracion, String descripcion, String descripcion_seguro, Integer num_habitaciones,
+	public OfertaEsporadica(String id, String tipo, Integer disponible, Integer precio, Integer duracion, String descripcion, String descripcion_seguro, Integer num_habitaciones,
 			String ubicacion) {
-		super.setId(id);
-		super.setTipo(tipo);
+		super.setId_oferta(id);
+		super.setTipo_oferta(tipo);
 		super.setDisponible(disponible);
 		super.setPrecio(precio);
 		this.duracion = duracion;

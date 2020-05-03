@@ -1,105 +1,135 @@
 package uniandes.isis2304.parranderos.negocio;
 
+import java.util.Date;
+
 public class Reserva implements VOReserva{
 
-	private Long numReserva;
+	private String num_reserva;
 	
-	private String fechaInicio;
+	private Date fecha_inicio;
 
-	private String fechaFin;
+	private Date fecha_fin;
 	
-	private Long id_oferta;
+	private String id_oferta;
 	
-	private Long documentoCliente;
+	private String doc_cliente;
 	
-	private String tipoDocCliente;
+	private String tipo_doc_cliente;
 	
-	private String fechaCancelacion;
+	private Date fecha_cancelacion;
 	
 
 	public Reserva() {
 
+		this.num_reserva = "Defailt";
+		this.fecha_inicio = null;
+		this.fecha_fin = null;
+		this.id_oferta = "Defailt";
+		this.doc_cliente = "Defailt";
+		this.tipo_doc_cliente = "Defailt";
+		this.fecha_cancelacion = null;
 	}
-	
-	
 
 
-	public Reserva(Long numReserva, String fechaInicio, String fechaFin, Long id_oferta, Long documentoCliente,
-			String tipoDocCliente, String fechaCancelacion) {
-		this.numReserva = numReserva;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+	public Reserva(String num_reserva, Date fecha_inicio, Date fecha_fin, String id_oferta, String doc_cliente,
+			String tipo_doc_cliente, Date fecha_cancelacion) {
+		this.num_reserva = num_reserva;
+		this.fecha_inicio = fecha_inicio;
+		this.fecha_fin = fecha_fin;
 		this.id_oferta = id_oferta;
-		this.documentoCliente = documentoCliente;
-		this.tipoDocCliente = tipoDocCliente;
-		this.fechaCancelacion = fechaCancelacion;
+		this.doc_cliente = doc_cliente;
+		this.tipo_doc_cliente = tipo_doc_cliente;
+		this.fecha_cancelacion = fecha_cancelacion;
 	}
 
 
 
 
-	public String getFechaInicio() {
-		return fechaInicio;
-	}
 
-	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-
-	public String getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
+	public String getNum_reserva() {
+		return num_reserva;
 	}
 
 
-	public Long getNumReserva() {
-		return numReserva;
+	public void setNum_reserva(String num_reserva) {
+		this.num_reserva = num_reserva;
 	}
 
-	public void setNumReserva(Long numReserva) {
-		this.numReserva = numReserva;
+
+	public Date getFecha_inicio() {
+		return fecha_inicio;
 	}
 
-	public Long getId_oferta() {
+
+	public void setFecha_inicio(Date fecha_inicio) {
+		this.fecha_inicio = fecha_inicio;
+	}
+
+
+	public Date getFecha_fin() {
+		return fecha_fin;
+	}
+
+
+	public void setFecha_fin(Date fecha_fin) {
+		this.fecha_fin = fecha_fin;
+	}
+
+
+	public String getId_oferta() {
 		return id_oferta;
 	}
 
-	public void setId_oferta(Long id_oferta) {
+
+	public void setId_oferta(String id_oferta) {
 		this.id_oferta = id_oferta;
 	}
 
-	public Long getDocumentoCliente() {
-		return documentoCliente;
+
+	public String getDoc_cliente() {
+		return doc_cliente;
 	}
 
-	public void setDocumentoCliente(Long documentoCliente) {
-		this.documentoCliente = documentoCliente;
+
+	public void setDoc_cliente(String doc_cliente) {
+		this.doc_cliente = doc_cliente;
 	}
 
-	public String getTipoDocCliente() {
-		return tipoDocCliente;
+
+	public String getTipo_doc_cliente() {
+		return tipo_doc_cliente;
 	}
 
-	public void setTipoDocCliente(String tipoDocCliente) {
-		this.tipoDocCliente = tipoDocCliente;
+
+	public void setTipo_doc_cliente(String tipo_doc_cliente) {
+		this.tipo_doc_cliente = tipo_doc_cliente;
 	}
 
-	public String getFechaCancelacion() {
-		return fechaCancelacion;
+
+	public Date getFecha_cancelacion() {
+		return fecha_cancelacion;
 	}
 
-	public void setFechaCancelacion(String fechaCancelacion) {
-		this.fechaCancelacion = fechaCancelacion;
+
+	public void setFecha_cancelacion(Date fecha_cancelacion) {
+		this.fecha_cancelacion = fecha_cancelacion;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Reserva [numReserva=" + numReserva + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ ", id_oferta=" + id_oferta + ", documentoCliente=" + documentoCliente + ", tipoDocCliente="
-				+ tipoDocCliente + ", fechaCancelacion=" + fechaCancelacion + "]";
+		return "Reserva [num_reserva=" + num_reserva + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin
+				+ ", id_oferta=" + id_oferta + ", doc_cliente=" + doc_cliente + ", tipo_doc_cliente=" + tipo_doc_cliente
+				+ ", fecha_cancelacion=" + fecha_cancelacion + "]";
 	}
+	
+	
+
+
+	
+
+
+
+	
 	
 }

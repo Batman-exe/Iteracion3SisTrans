@@ -1,7 +1,12 @@
 package uniandes.isis2304.parranderos.persistencia;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.parranderos.negocio.Oferta;
+import uniandes.isis2304.parranderos.negocio.Reserva;
 
 public class SQLReserva {
 
@@ -34,16 +39,47 @@ public class SQLReserva {
 	public long adicionarReserva (PersistenceManager pm, Long numeroReserva, String fechaInicio, String fechaFin, Long idOferta, 
 			Long docCliente, String tipoDoc, String fechaCandelacion) 
 	{
-       Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservas() 
+       System.out.println(docCliente);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservas() 
        + "(num_reserva, fecha_inicio, fecha_fin, id_oferta, doc_cliente, tipo_doc_cliente, fecha_cancelacion) values (?, ?, ?, ?, ?, ?, ?)");
        q.setParameters(numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc,fechaCandelacion);
        return (long) q.executeUnique();
 	}
 	
-	public long eliminarReserva (PersistenceManager pm, Long idReserva)
+	public long eliminarReserva (PersistenceManager pm, Long idReserva, Long idOferta)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservas() + " WHERE num_reserva = ?");
-        q.setParameters(idReserva);
+        System.out.println(idOferta);
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservas() + " WHERE num_reserva = ? AND id_oferta = ? ");
+        q.setParameters(idReserva, idOferta);
+        
         return (long) q.executeUnique();
 	}
+	
+	public List<Reserva> darReservas(PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() );
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
+	public List<Reserva> darReservasPornumero(PersistenceManager pm, Long idReserva)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE num_reserva = ? " );
+		q.setParameters(idReserva);
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
+	public List<Reserva> darReservasOfertaEnFecha(PersistenceManager pm, Long idReserva, String fechaI, String fechaF)
+	{
+		
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReservas() + " WHERE id_oferta = ? AND fecha_inicio <= ? AND fecha_fin >= ?" );
+		q.setParameters(idReserva,fechaI,fechaF);
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Reserva>) q.executeResultList(Reserva.class);
+	}
+	
 }

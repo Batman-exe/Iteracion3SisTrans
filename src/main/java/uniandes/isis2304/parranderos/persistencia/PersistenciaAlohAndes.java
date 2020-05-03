@@ -16,6 +16,7 @@
 package uniandes.isis2304.parranderos.persistencia;
 
 
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -365,6 +366,7 @@ public class PersistenciaAlohAndes
 		{
 			if (tx.isActive())
 			{
+				System.out.println("gdiogaiudogaiogjidasjg");
 				tx.rollback();
 			}
 			pm.close();
@@ -435,6 +437,7 @@ public class PersistenciaAlohAndes
 			if (tx.isActive())
 			{
 				tx.rollback();
+				System.out.println("no funcionó");
 			}
 			pm.close();
 		}
@@ -452,8 +455,11 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("InserciÃ³n de oferta: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+			int d = 0;
+			if(disponible)
+				d = 1;
 
-			return new Oferta(id, tipo_oferta, disponible, precio);
+			return new Oferta(""+id, tipo_oferta, d, precio);
 		}
 		catch (Exception e)
 		{
@@ -486,7 +492,7 @@ public class PersistenciaAlohAndes
 
 			log.trace ("InserciÃ³n de Adicional: " + id_oferta + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Adicional(id_oferta, nombre, precio);
+			return new Adicional(""+id_oferta, nombre, precio);
 		}
 		catch (Exception e)
 		{
@@ -518,8 +524,17 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("InserciÃ³n de reserva: " + numeroReserva + ": " + tuplasInsertadas + " tuplas insertadas");
+			
+			String[] fi =  fechaInicio.split("/");
+			Date i = new Date(Integer.parseInt(fi[2]), Integer.parseInt(fi[1]), Integer.parseInt(fi[0]));
+			
+			String[] ff =  fechaFin.split("/");
+			Date f = new Date(Integer.parseInt(ff[2]), Integer.parseInt(ff[1]), Integer.parseInt(ff[0]));
+			
+			String[] fc =  fechaCandelacion.split("/");
+			Date c = new Date(Integer.parseInt(fc[2]), Integer.parseInt(fc[1]), Integer.parseInt(fc[0]));
 
-			return new Reserva(numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc, fechaCandelacion);
+			return new Reserva(""+numeroReserva, i, f, ""+idOferta, ""+docCliente, tipoDoc, c);
 		}
 		catch (Exception e)
 		{
@@ -538,14 +553,14 @@ public class PersistenciaAlohAndes
 		}
 	}
 
-	public long eliminarReservaPorNumero (Long numReserva) 
+	public long eliminarReservaPorNumero (Long numReserva, Long idOferta) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long resp = sqlReserva.eliminarReserva(pm, numReserva);
+			long resp = sqlReserva.eliminarReserva(pm, numReserva, idOferta);
 			tx.commit();
 
 			return resp;
@@ -612,8 +627,15 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("InserciÃ³n de oferta apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+			
+			int a = 0;
+			if(esAmoblado)
+				a = 1;
+			int d = 0;
+			if(disponible)
+				d = 1;
 
-			return new OfertaApartamento(id, tipo, disponible, precio, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
+			return new OfertaApartamento(""+id, tipo, d, precio, capacidad, descripcion, a, ubicacion, ""+documentoOp, tipoDocOp, ""+contrato);
 		}
 		catch (Exception e)
 		{
@@ -645,8 +667,11 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("Inserción de Oferta Esporadica: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+			 int d = 0;
+			 if(disponible)
+				 d =1;
 
-			return new OfertaEsporadica(id, tipo, disponible, precio, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
+			return new OfertaEsporadica(""+id, tipo, d, precio, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
 		}
 		catch (Exception e)
 		{
@@ -678,8 +703,10 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("InserciÃ³n de oferta habitacion diaria: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-
-			return new OfertaHabitacionDiaria(id, tipo, disponible, precio, esCompartida, ubicacion, id_operador);
+			int d = 0;
+			 if(disponible)
+				 d =1;
+			return new OfertaHabitacionDiaria(""+id, tipo, d, precio, esCompartida, ubicacion, id_operador);
 		}
 		catch (Exception e)
 		{
@@ -699,20 +726,23 @@ public class PersistenciaAlohAndes
 
 
 	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, String tipo, Boolean disponible, Integer precio, 
-			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato) 
+			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlOfertaHabitacionMensual.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+			long tuplasInsertadas = sqlOfertaHabitacionMensual.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp);
 			System.out.println(tuplasInsertadas);
 			tx.commit();
 
 			log.trace ("InserciÃ³n de oferta habitacion mensual: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new OfertaHabitacionMensual(id, tipo, disponible, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+			int d = 0;
+			 if(disponible)
+				 d =1;
+			return new OfertaHabitacionMensual(""+id, tipo, d, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp);
 		}
 		catch (Exception e)
 		{
@@ -745,7 +775,10 @@ public class PersistenciaAlohAndes
 
 			log.trace ("InserciÃ³n de cliente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new OfertaViviendaUniversitaria(id, tipo, disponible, precio, capacidad, duracion, esCompartida, id_operador);
+			int d = 0;
+			 if(disponible)
+				 d =1;
+			return new OfertaViviendaUniversitaria(""+id, tipo, d, precio, capacidad, duracion, esCompartida, id_operador);
 		}
 		catch (Exception e)
 		{
@@ -764,4 +797,64 @@ public class PersistenciaAlohAndes
 		}
 	}
 
+	
+	
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida
+	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
+	 */
+	public List<Oferta> darOfertas ()
+	{
+		return sqlOferta.darOfertas (pmf.getPersistenceManager());
+	}
+	
+	public List<Oferta> darOfertasPorTipo (String tipo)
+	{
+		return sqlOferta.darOfertasTipo(pmf.getPersistenceManager(), tipo);
+	}
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida
+	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
+	 */
+	public List<Adicional> darAdicionales()
+	{
+		return sqlAdicional.darAdicionales(pmf.getPersistenceManager());
+	}
+	
+	public Adicional darAdicionalesPorOfertaYNombre(long idOferta, String nombre)
+	{
+		return sqlAdicional.darAdicionalPorOfertaYNombre(pmf.getPersistenceManager(), idOferta, nombre);
+	}
+	
+	
+	public List<Reserva> darReservas()
+	{
+		return sqlReserva.darReservas(pmf.getPersistenceManager());
+	}
+	
+	public List<Reserva> darReservasOfertaEnFecha(Long idReserva, String fechaI, String fechaF)
+	{
+		return sqlReserva.darReservasOfertaEnFecha(pmf.getPersistenceManager(), idReserva, fechaI, fechaF);
+	}
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida
+	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de la tabla TIPOBEBIDA
+	 */
+	public List<OfertaApartamento> darOfertasApartamento ()
+	{
+		return sqlOfertaApartamento.darOfertasApartamento(pmf.getPersistenceManager());
+	}
+	
+	
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida con un identificador dado
+	 * @param idOferta - El identificador del tipo de bebida
+	 * @return El objeto TipoBebida, construido con base en las tuplas de la tabla TIPOBEBIDA con el identificador dado
+	 */
+	public Oferta darOfertaPorId (long idOferta)
+	{
+		Oferta res = sqlOferta.darOfertaPorId (pmf.getPersistenceManager(), idOferta);
+		System.out.println(res);
+		return sqlOferta.darOfertaPorId (pmf.getPersistenceManager(), idOferta);
+	}
 }

@@ -4,95 +4,98 @@ import java.util.List;
 
 public class OfertaApartamento extends Oferta implements VOOfertaApartamento {
 
+	private String id;
+	
 	private Integer capacidad;
 	
 	private String descripcion;
 		
-	private Boolean esAmoblado;
+	private Integer es_amoblado;
 	
 	private String ubicacion;
 	
-	private Long documentoOp;
+	private String doc_operador;
 	
-	private String tipoDocOp;
+	private String tipo_doc_op;
 	
-	private Long contrato;
+	private String contrato;
 		
-	private List<Reserva> reservas;
+
 
 	
 	public OfertaApartamento() {
 
-		
+		this.id = "Default";
+		this.capacidad = 0;
+		this.descripcion = "Default";
+		this.es_amoblado = 0;
+		this.ubicacion = "Default";
+		this.doc_operador = "Default";
+		this.tipo_doc_op = "Default";
+		this.contrato = "Default";
 	}
 	
 	
 
-	public OfertaApartamento(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, String descripcion, Boolean esAmoblado, String ubicacion, Long documentoOp,
-			String tipoDocOp, Long contrato) {
-		super.setId(id);
-		super.setTipo(tipo);
+	public OfertaApartamento(String id, String tipo, Integer disponible, Integer precio, Integer capacidad, String descripcion, Integer es_amoblado, String ubicacion, String doc_operador,
+			String tipo_doc_op, String contrato) {
+		super.setId_oferta(id);
+		super.setTipo_oferta(tipo);
 		super.setDisponible(disponible);
 		super.setPrecio(precio);
 		this.capacidad = capacidad;
 		this.descripcion = descripcion;
-		this.esAmoblado = esAmoblado;
+		this.es_amoblado = es_amoblado;
 		this.ubicacion = ubicacion;
-		this.documentoOp = documentoOp;
-		this.tipoDocOp = tipoDocOp;
+		this.doc_operador = doc_operador;
+		this.tipo_doc_op = tipo_doc_op;
 		this.contrato=contrato;
 	}
 
 	
 
 
-	public Long getDocumentoOp() {
-		return documentoOp;
+	public String getId(){
+		return this.id;
+	}
+	
+	public void setId(String id){
+		this.id = id;
 	}
 
-
-
-	public void setDocumentoOp(Long documentoOp) {
-		this.documentoOp = documentoOp;
-	}
-
-
-
-	public String getTipoDocOp() {
-		return tipoDocOp;
-	}
-
-
-
-	public void setTipoDocOp(String tipoDocOp) {
-		this.tipoDocOp = tipoDocOp;
-	}
-
-
-
+	
 	public Integer getCapacidad() {
 		return capacidad;
 	}
+
+
 
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
 
+
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
+
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
 
-	public Boolean getEsAmoblado() {
-		return esAmoblado;
+
+	public Integer getEs_amoblado() {
+		return es_amoblado;
 	}
 
-	public void setEsAmoblado(Boolean esAmoblado) {
-		this.esAmoblado = esAmoblado;
+
+
+	public void setEs_amoblado(Integer es_amoblado) {
+		this.es_amoblado = es_amoblado;
 	}
 
 
@@ -101,32 +104,61 @@ public class OfertaApartamento extends Oferta implements VOOfertaApartamento {
 		return ubicacion;
 	}
 
+
+
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 
-	public Long getContrato() {
+
+
+	public String getDoc_operador() {
+		return doc_operador;
+	}
+
+
+
+	public void setDoc_operador(String doc_operador) {
+		this.doc_operador = doc_operador;
+	}
+
+
+
+	public String getTipo_doc_op() {
+		return tipo_doc_op;
+	}
+
+
+
+	public void setTipo_doc_op(String tipo_doc_op) {
+		this.tipo_doc_op = tipo_doc_op;
+	}
+
+
+
+	public String getContrato() {
 		return contrato;
 	}
 
-	public void setContrato(Long contrato) {
+
+
+	public void setContrato(String contrato) {
 		this.contrato = contrato;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
+
+
 
 	@Override
 	public String toString() {
-		return "OfertaApartamento [capacidad=" + capacidad + ", descripcion=" + descripcion 
-				+ ", esAmoblado=" + esAmoblado
+		return super.toString() + " OfertaApartamento [capacidad=" + capacidad + ", descripcion=" + descripcion 
+				+ ", esAmoblado=" + es_amoblado
 				+ ", ubicacion="
-				+ ubicacion + ", contrato=" + contrato + ", reservas=" + reservas + "]";
+				+ ubicacion + ", contrato=" + contrato + "]";
 	}
+
+
+
 	
 }

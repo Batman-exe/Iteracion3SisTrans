@@ -1,7 +1,12 @@
 package uniandes.isis2304.parranderos.persistencia;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.parranderos.negocio.Adicional;
+import uniandes.isis2304.parranderos.negocio.Oferta;
 
 public class SQLAdicional {
 
@@ -37,5 +42,22 @@ public class SQLAdicional {
         		"(id_oferta, nombre, precio) values (?, ?, ?)");
         q.setParameters(id_oferta, nombre, precio );
         return (long) q.executeUnique();
+	}
+	
+	public List<Adicional> darAdicionales (PersistenceManager pm)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdicionales() );
+		//q.setResultClass(Oferta.class);
+		//System.out.println(q.executeList().size());
+		return (List<Adicional>) q.executeResultList(Adicional.class);
+	}
+	
+	public Adicional darAdicionalPorOfertaYNombre (PersistenceManager pm, long idOferta, String nombre) 
+	{
+		System.out.println(idOferta);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdicionales() + " WHERE id_oferta = ? AND nombre = ?");
+		q.setResultClass(Adicional.class);
+		q.setParameters(idOferta, nombre);
+		return (Adicional) q.executeUnique();
 	}
 }
