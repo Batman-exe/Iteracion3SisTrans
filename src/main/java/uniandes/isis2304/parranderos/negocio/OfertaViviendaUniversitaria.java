@@ -11,6 +11,8 @@ public class OfertaViviendaUniversitaria extends Oferta implements VOOfertaVivie
 
 	private Boolean esCompartida;
 	
+	private Long id_operador;
+	
 	private List<Reserva> reservas;
 	
 	private List<Adicional> serviciosAdicionales;
@@ -25,7 +27,7 @@ public class OfertaViviendaUniversitaria extends Oferta implements VOOfertaVivie
 	
 	
 	public OfertaViviendaUniversitaria(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad, String duracion,
-			Boolean esCompartida) {
+			Boolean esCompartida, Long id_operador) {
 		super.setId(id);
 		super.setTipo(tipo);
 		super.setDisponible(disponible);
@@ -33,6 +35,7 @@ public class OfertaViviendaUniversitaria extends Oferta implements VOOfertaVivie
 		this.capacidad = capacidad;
 		this.duracion = duracion;
 		this.esCompartida = esCompartida;
+		this.id_operador=id_operador;
 	}
 
 
@@ -80,6 +83,14 @@ public class OfertaViviendaUniversitaria extends Oferta implements VOOfertaVivie
 
 	public void setServiciosAdicionales(List<Adicional> serviciosAdicionales) {
 		this.serviciosAdicionales = serviciosAdicionales;
+	}
+
+	public Long getId_operador() {
+		return id_operador;
+	}
+
+	public void setId_operador(Long id_operador) {
+		this.id_operador = id_operador;
 	}
 
 	@Override

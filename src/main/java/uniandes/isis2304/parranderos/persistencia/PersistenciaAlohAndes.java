@@ -16,8 +16,6 @@
 package uniandes.isis2304.parranderos.persistencia;
 
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,9 +30,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.parranderos.negocio.Adicional;
 import uniandes.isis2304.parranderos.negocio.Cliente;
+import uniandes.isis2304.parranderos.negocio.Contrato;
 import uniandes.isis2304.parranderos.negocio.Oferta;
 import uniandes.isis2304.parranderos.negocio.OfertaApartamento;
+import uniandes.isis2304.parranderos.negocio.OfertaEsporadica;
+import uniandes.isis2304.parranderos.negocio.OfertaHabitacionDiaria;
 import uniandes.isis2304.parranderos.negocio.OfertaHabitacionMensual;
 import uniandes.isis2304.parranderos.negocio.OfertaViviendaUniversitaria;
 import uniandes.isis2304.parranderos.negocio.PersonaJuridica;
@@ -63,7 +65,7 @@ public class PersistenciaAlohAndes
 	 * Logger para escribir la traza de la ejecuciÃ³n
 	 */
 	private static Logger log = Logger.getLogger(PersistenciaAlohAndes.class.getName());
-	
+
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
 	 */
@@ -76,51 +78,51 @@ public class PersistenciaAlohAndes
 	 * Atributo privado que es el Ãºnico objeto de la clase - PatrÃ³n SINGLETON
 	 */
 	private static PersistenciaAlohAndes instance;
-	
+
 	/**
 	 * FÃ¡brica de Manejadores de persistencia, para el manejo correcto de las transacciones
 	 */
 	private PersistenceManagerFactory pmf;
-	
+
 	/**
 	 * Arreglo de cadenas con los nombres de las tablas de la base de datos, en su orden:
 	 * Secuenciador, tipoBebida, bebida, bar, bebedor, gustan, sirven y visitan
 	 */
 	private List <String> tablas;
-	
+
 	/**
 	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaParranderos
 	 */
-	
-	
+
+
 	/**
 	 * Atributo para el acceso a la tabla BEBIDA de la base de datos
 	 */
-	
+
 	private SQLCliente sqlCliente;
-	
+
 	private SQLPersonaNatural sqlPersonaNatural;
-	
+
 	private SQLPersonaJuridica sqlPersonaJuridica;
-	
+
 	private SQLOferta sqlOferta;
-	
+
 	private SQLAdicional sqlAdicional;
-	
+
 	private SQLReserva sqlReserva;
-	
+
 	private SQLContrato sqlContrato;
-	
+
 	private SQLOfertaApartamento sqlOfertaApartamento;
-	
+
 	private SQLOfertaHabitacionMensual sqlOfertaHabitacionMensual;
-	
+
 	private SQLOfertaHabitacionDiaria sqlOfertaHabitacionDiaria;
-	
+
 	private SQLOfertaViviendaUniversitaria sqlOfertaViviendaUniversitaria;
-	
+
 	private SQLOfertaEsporadica sqlOfertaEsporadica;
-	
+
 	/* ****************************************************************
 	 * 			MÃ©todos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -132,7 +134,7 @@ public class PersistenciaAlohAndes
 	{
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
 		crearClasesSQL ();
-		
+
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("AlohAndes_sequence");
@@ -149,7 +151,7 @@ public class PersistenciaAlohAndes
 		tablas.add("OFERTAHABITACIONDIARIA");
 		tablas.add("OFERTAHABITACIONMENSUAL");
 		tablas.add("OFERTAVIVIENDAUNIVERSITARIA");
-}
+	}
 
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - PatrÃ³n SINGLETON
@@ -159,7 +161,7 @@ public class PersistenciaAlohAndes
 	{
 		crearClasesSQL ();
 		tablas = leerNombresTablas (tableConfig);
-		
+
 		String unidadPersistencia = tableConfig.get ("unidadPersistencia").getAsString ();
 		log.trace ("Accediendo unidad de persistencia: " + unidadPersistencia);
 		pmf = JDOHelper.getPersistenceManagerFactory (unidadPersistencia);
@@ -176,7 +178,7 @@ public class PersistenciaAlohAndes
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Constructor que toma los nombres de las tablas de la base de datos del objeto tableConfig
 	 * @param tableConfig - El objeto JSON con los nombres de las tablas
@@ -199,7 +201,7 @@ public class PersistenciaAlohAndes
 		pmf.close ();
 		instance = null;
 	}
-	
+
 	/**
 	 * Genera una lista con los nombres de las tablas de la base de datos
 	 * @param tableConfig - El objeto Json con los nombres de las tablas
@@ -214,10 +216,10 @@ public class PersistenciaAlohAndes
 		{
 			resp.add (nom.getAsString ());
 		}
-		
+
 		return resp;
 	}
-	
+
 	/**
 	 * Crea los atributos de clases de apoyo SQL
 	 */
@@ -228,7 +230,7 @@ public class PersistenciaAlohAndes
 		sqlPersonaJuridica = new SQLPersonaJuridica(this);
 		sqlOferta= new SQLOferta(this);
 		sqlAdicional= new SQLAdicional(this);
-		
+
 		sqlReserva= new SQLReserva(this);
 		sqlContrato= new SQLContrato(this);
 		sqlOfertaApartamento= new SQLOfertaApartamento(this);
@@ -253,68 +255,68 @@ public class PersistenciaAlohAndes
 	{
 		return tablas.get (1);
 	}
-	
+
 	public String darTablaPersonasNaturales ()
 	{
 		return tablas.get (2);
 	}
-	
+
 	public String darTablaPersonasJuridicas ()
 	{
 		return tablas.get (3);
 	}
-	
+
 	public String darTablaOfertas()
 	{
 		return tablas.get (4);
 	}
-	
+
 	public String darTablaAdicionales()
 	{
 		return tablas.get (5);
 	}
-	
+
 	public String darTablaInteresan()
 	{
 		return tablas.get (6);
 	}
-	
+
 	public String darTablaReservas()
 	{
 		return tablas.get (7);
 	}
-	
+
 	public String darTablaContratos()
 	{
 		return tablas.get (8);
 	}
-	
+
 	public String darTablaOfertaApartamento()
 	{
 		return tablas.get (9);
 	}
-	
+
 	public String darTablaOfertaEsporadica()
 	{
 		return tablas.get (10);
 	}
-	
+
 	public String darTablaOfertaHabitacionDiaria()
 	{
 		return tablas.get(11);
 	}
-	
+
 	public String darTablaOfertaHabitacionMensual()
 	{
 		return tablas.get (12);
 	}
-	
+
 	public String darTablaOfertaViviendaUniversitaria()
 	{
 		return tablas.get (13);
 	}
 
-	
+
 	/**
 	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle especÃ­fico del problema encontrado
 	 * @param e - La excepciÃ³n que ocurrio
@@ -339,358 +341,427 @@ public class PersistenciaAlohAndes
 			String tipo, String userName, String contrasena) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad,
-            		tipo, userName, contrasena);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlCliente.adicionarCliente(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad,
+					tipo, userName, contrasena);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de cliente: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Cliente(numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-	
-	public PersonaJuridica adicionarPersonaJuridica(Long nit, String nombre, String tipo, String horaApertura,
-			String horaCierre, String userName, String contrasena) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlPersonaJuridica.adicionarPersonaJuridica(pm, nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+			log.trace ("InserciÃ³n de cliente: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            log.trace ("InserciÃ³n de persona juridica: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new PersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			return new Cliente(numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
+
+
 	public PersonaNatural adicionarPersonaNatural(Long numeroDocumento, String tipoDocumento, String nombre, String nacionalidad, 
 			String tipo, String userName, String contrasena) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlPersonaNatural.adicionarPersonaNatural(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlPersonaNatural.adicionarPersonaNatural(pm, numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
 
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de persona juridica: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new PersonaNatural(numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de persona juridica: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new PersonaNatural(numeroDocumento, tipoDocumento, nombre, nacionalidad, tipo, userName, contrasena);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
+
+
+	public PersonaJuridica adicionarPersonaJuridica(Long nit, String nombre, String tipo, String horaApertura,
+			String horaCierre, String userName, String contrasena) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlPersonaJuridica.adicionarPersonaJuridica(pm, nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
+
+			log.trace ("InserciÃ³n de persona juridica: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new PersonaJuridica(nit, nombre, tipo, horaApertura, horaCierre, userName, contrasena);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+
 	public Oferta adicionarOferta(Long id, String tipo_oferta, Boolean disponible, Integer precio) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOferta.adicionarOferta(pm, id, tipo_oferta, disponible, precio);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOferta.adicionarOferta(pm, id, tipo_oferta, disponible, precio);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de oferta: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Oferta(id, tipo_oferta, disponible, precio);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de oferta: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Oferta(id, tipo_oferta, disponible, precio);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
+
+
+	public Adicional adicionarAdicional(Long id_oferta, String nombre, Integer precio) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlAdicional.adicionarAdicional(pm, id_oferta, nombre, precio);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
+
+			log.trace ("InserciÃ³n de Adicional: " + id_oferta + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Adicional(id_oferta, nombre, precio);
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+
 	public Reserva adicionarReservas(Long numeroReserva, String fechaInicio, String fechaFin, Long idOferta, 
 			Long docCliente, String tipoDoc, String fechaCandelacion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlReserva.adicionarReserva(pm, numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc, fechaCandelacion);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlReserva.adicionarReserva(pm, numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc, fechaCandelacion);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de reserva: " + numeroReserva + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Reserva(numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc, fechaCandelacion);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de reserva: " + numeroReserva + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Reserva(numeroReserva, fechaInicio, fechaFin, idOferta, docCliente, tipoDoc, fechaCandelacion);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
+
 	public long eliminarReservaPorNumero (Long numReserva) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlReserva.eliminarReserva(pm, numReserva);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlReserva.eliminarReserva(pm, numReserva);
+			tx.commit();
 
-            return resp;
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
-	public OfertaApartamento adicionarOfertaApartamento(Long id, Integer capacidad, String descripcion, Boolean esAmoblado,
-			String ubicacion, Long docOperador, String tipoDocOperador, Integer precio) 
+
+
+	public Contrato adicionarContrato(Long numContrato, Integer duracion, Long numReserva) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOfertaApartamento.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlContrato.adicionarContrato(pm, numContrato, duracion, numReserva);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de oferta apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new OfertaApartamento(id, capacidad, descripcion, esAmoblado, ubicacion, docOperador, tipoDocOperador, precio);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de Contrato: " + numContrato + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Contrato(numContrato, duracion, numReserva);
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
-	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, Integer capacidad, String descripcion,
-			String ubicacion, Long docOperador, String tipoDocOperador, Integer precio) 
+
+	public OfertaApartamento adicionarOfertaApartamento(Long id, String tipo, Boolean disponible, Integer precio, Integer capacidad,
+			String descripcion, Boolean esAmoblado, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato ) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOfertaHabitacionMensual.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, precio);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOfertaApartamento.adicionarOfertaApartamento(pm, id, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de oferta apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new OfertaHabitacionMensual(id, capacidad, descripcion, ubicacion, docOperador, tipoDocOperador, precio);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de oferta apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OfertaApartamento(id, tipo, disponible, precio, capacidad, descripcion, esAmoblado, ubicacion, documentoOp, tipoDocOp, contrato);
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
-	public OfertaViviendaUniversitaria adicionarOfertaViviendaUniversitaria(Long id,Integer capacidad, String duracion, 
-			Boolean esCompartida, Integer precio, Long id_operador) 
+
+
+	public OfertaEsporadica adicionarOfertaEsporadica(Long id, String tipo, Boolean disponible, Integer precio, Integer duracion, 
+			String descripcion, String descripcion_seguro, Integer num_habitaciones, String ubicacion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOfertaViviendaUniversitaria.adicionarOfertaViviendaUniversitaria(pm, id, capacidad,duracion,esCompartida, precio, id_operador);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOfertaEsporadica.adicionarOfertaEsporadica(pm, id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de cliente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new OfertaViviendaUniversitaria(id, capacidad, duracion, esCompartida, precio, id_operador);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("Inserción de Oferta Esporadica: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OfertaEsporadica(id, tipo, disponible, precio, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion);
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
-	
-	public OfertaHabitacionDiaria adicionarOfertaHabitacionDiaria(Long id,Boolean esCompartida, Integer precio, 
-			String ubicacion, Long id_operador) 
+
+
+	public OfertaHabitacionDiaria adicionarOfertaHabitacionDiaria(Long id, String tipo, Boolean disponible, Integer precio, 
+			Boolean esCompartida, String ubicacion, Long id_operador) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOfertaHabitacionDiaria.adicionarOfertaHabitacionDiaria(pm, id, esCompartida, precio, ubicacion, id_operador);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOfertaHabitacionDiaria.adicionarOfertaHabitacionDiaria(pm, id, esCompartida, ubicacion, id_operador);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("InserciÃ³n de cliente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new OfertaHabitacionDiaria(id, esCompartida, precio, ubicacion, id_operador);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de oferta habitacion diaria: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OfertaHabitacionDiaria(id, tipo, disponible, precio, esCompartida, ubicacion, id_operador);
+		}
+		catch (Exception e)
+		{
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
-	public OfertaEsporadica adicionarOfertaEsporadica(Long id, Integer duracion, String descripcion, String descripcion_seguro,
-			Integer num_habitaciones, String ubicacion, Integer precio) 
+
+	public OfertaHabitacionMensual adicionarOfertaHabitacionMensual(Long id, String tipo, Boolean disponible, Integer precio, 
+			Integer capacidad, String descripcion, String ubicacion, Long documentoOp, String tipoDocOp, Long contrato) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long tuplasInsertadas = sqlOfertaEsporadica.adicionarOfertaEsporadica(pm, id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion, precio);
-            System.out.println(tuplasInsertadas);
-            tx.commit();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOfertaHabitacionMensual.adicionarHabitacionMensual(pm, id, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
 
-            log.trace ("Inserción de cliente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new OfertaEsporadica(id, duracion, descripcion, descripcion_seguro, num_habitaciones, ubicacion, precio);
-        }
-        catch (Exception e)
-        {
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	e.printStackTrace();
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
+			log.trace ("InserciÃ³n de oferta habitacion mensual: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OfertaHabitacionMensual(id, tipo, disponible, precio, capacidad, descripcion, ubicacion, documentoOp, tipoDocOp, contrato);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
- }
+	public OfertaViviendaUniversitaria adicionarOfertaViviendaUniversitaria(Long id, String tipo, Boolean disponible, Integer precio, 
+			Integer capacidad, String duracion, Boolean esCompartida, Long id_operador) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOfertaViviendaUniversitaria.adicionarOfertaViviendaUniversitaria(pm, id, capacidad, duracion, esCompartida, id_operador);
+			System.out.println(tuplasInsertadas);
+			tx.commit();
+
+			log.trace ("InserciÃ³n de cliente: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OfertaViviendaUniversitaria(id, tipo, disponible, precio, capacidad, duracion, esCompartida, id_operador);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+}
