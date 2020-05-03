@@ -652,10 +652,97 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		Long lId2 =Long.parseLong(id2);
     		if (id != null)
     		{
-    			long tbEliminados = alohAndes.eliminarReservaPorNumero(lId,lId2);
+    			long tbEliminados = alohAndes.eliminarReserva(lId,lId2);
 
     			String resultado = "En eliminar TipoBebida\n\n";
     			resultado += tbEliminados + " Tipos de bebida eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void RF8( )
+    {
+    	try 
+    	{
+    		String id = JOptionPane.showInputDialog (this, "numero de la reserva colectiva?", "Borrar reserva por Id", JOptionPane.QUESTION_MESSAGE);
+    		Long lId =Long.parseLong(id);
+
+    		if (id != null)
+    		{
+    			long tbEliminados = alohAndes.eliminarReservaNumReserva(lId);
+
+    			String resultado = "En eliminar TipoBebida\n\n";
+    			resultado += tbEliminados + " Reservas eliminadas\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void RF9( )
+    {
+    	try 
+    	{
+    		String id = JOptionPane.showInputDialog (this, "id de la oferta a deshabilitar?", "cambiar oferta por Id", JOptionPane.QUESTION_MESSAGE);
+    		Long lId =Long.parseLong(id);
+
+    		if (id != null)
+    		{
+    			long tbEliminados = alohAndes.RF9(lId);
+
+    			String resultado = "En cambiar Ofertas\n\n";
+    			resultado += tbEliminados + " Reservas cambiadas\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void RF10( )
+    {
+    	try 
+    	{
+    		String id = JOptionPane.showInputDialog (this, "id de la oferta a habilitar?", "cambiar oferta por Id", JOptionPane.QUESTION_MESSAGE);
+    		Long lId =Long.parseLong(id);
+
+    		if (id != null)
+    		{
+    			long tbEliminados = alohAndes.RF10(lId);
+
+    			String resultado = "En cambiar Ofertas\n\n";
+    			resultado += tbEliminados + " Reservas cambiadas\n";
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -922,8 +1009,13 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener
     		String fechaCancelacion = JOptionPane.showInputDialog(this, "Ingrese la fecha de cancelacion (DD/MM/YYYY)", "RF7",JOptionPane.QUESTION_MESSAGE);
     		Integer cantidad= Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la cantidad de ofertas a solicitar", "RF7",JOptionPane.QUESTION_MESSAGE));
     		String ad = JOptionPane.showInputDialog(this, "Ingrese los adicionales desados separados por una ,", "RF7",JOptionPane.QUESTION_MESSAGE);
-    		ad.trim();
+    		
+    		
     		String[] adicionales = ad.split(",");
+    		
+    		for(String a: adicionales){
+    			System.out.println(a);
+    		}
 
 
     		List<VOReserva> rf7 = alohAndes.RF7(tipoOferta, numReserva, fechaI, fechaF, docCliente, tipoDoc, fechaCancelacion, cantidad, adicionales);

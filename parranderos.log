@@ -816,3 +816,294 @@ ORA-02290: restricción de control (ISIS2304B092010.ADICIONALES_CHK1) violada
 12:06:14,568 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 12:06:14,568 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
 12:06:14,577 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:08:08,850 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:08:08,850 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:08:08,859 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:09:30,581 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 30
+12:09:30,581 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 30
+12:09:30,722 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=30, fecha_inicio=3920-07-08, fecha_fin=3920-11-09, id_oferta=20, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-07-01]
+12:09:30,722 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=30, fecha_inicio=3920-07-08, fecha_fin=3920-11-09, id_oferta=20, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-07-01]
+12:09:30,732 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 30
+12:09:30,732 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 30
+12:09:30,749 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=30, fecha_inicio=3920-07-08, fecha_fin=3920-11-09, id_oferta=17, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-07-01]
+12:09:30,749 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=30, fecha_inicio=3920-07-08, fecha_fin=3920-11-09, id_oferta=17, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-07-01]
+12:25:48,769 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:25:48,769 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:25:48,778 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:27:14,187 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Cliente Mario Alcazar
+12:27:14,378 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Cliente: Cliente [nacionalidad=Colombiana, numeroDocumento=1815515, tipo=EMPLEADO, tipoDocumento=CC, interesan=null, reservas=null]
+12:29:36,758 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Adicional 17,Sauna
+12:29:36,774 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando adicional: Adicional [id_oferta=17, nombre=Sauna, precio=10000]
+12:30:34,540 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj HoteAndes
+12:30:34,561 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj: PersonaJuridica [nit=1546464, horaApertura=00:00, horaCierre=00:00, tipo=HOTEL, ofertasViviendaUniversitaria=null, ofertasHabitacionDiaria=null]
+12:32:39,558 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj Giga Hotel
+12:32:39,573 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj: PersonaJuridica [nit=45648464, horaApertura=00:00, horaCierre=00:00, tipo=HOTEL, ofertasViviendaUniversitaria=null, ofertasHabitacionDiaria=null]
+12:35:15,387 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural Maria Alcaparra
+12:35:15,408 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO PERSONASNATURALES(numero_documento, tipo_documento, nombre, nacionalidad, tipo, username, contrasena) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-02290: restricción de control (ISIS2304B092010.PERSONASNATURALES_CHK2) violada
+
+12:35:15,420 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural: null
+12:35:39,876 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:35:39,876 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:35:39,885 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:37:04,686 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural Maria Lizcano
+12:37:04,888 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural: PersonaNatural [nacionalidad=Colombiana, numeroDocumento=44854548, tipo=UNIANDINO, tipoDocumento=CC, ofertasApartamento=null, ofertasHabitacionMensual=null]
+12:41:34,563 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural Jackeline Monteblanco
+12:41:34,581 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO PERSONASNATURALES(numero_documento, tipo_documento, nombre, nacionalidad, tipo, username, contrasena) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-12899: el valor es demasiado grande para la columna "ISIS2304B092010"."PERSONASNATURALES"."NOMBRE" (real: 21, máximo: 20)
+
+12:41:34,593 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural: null
+12:42:42,842 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:42:42,842 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:42:42,851 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:43:31,444 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural Giorgina Blanco
+12:43:31,676 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural: PersonaNatural [nacionalidad=Italiana, numeroDocumento=545415154, tipo=UNIANDINO, tipoDocumento=PA, ofertasApartamento=null, ofertasHabitacionMensual=null]
+12:44:25,100 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural Laura Puccini
+12:44:25,114 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando persona natural: PersonaNatural [nacionalidad=Francesa, numeroDocumento=48845454, tipo=VECINO, tipoDocumento=CE, ofertasApartamento=null, ofertasHabitacionMensual=null]
+12:45:07,652 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta 146
+12:45:07,671 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta: Oferta [id_oferta=146, tipo_oferta=HABITACION DIARIA, disponible=1, precio=200000]
+12:45:58,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica 146
+12:45:58,336 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica: OfertaHabitacionDiaria [ubicacion=cll 55 #107-99, esIndividual=false, reservas=null]
+12:46:56,933 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta 265
+12:46:56,947 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta: Oferta [id_oferta=265, tipo_oferta=HABITACION DIARIA, disponible=1, precio=100000]
+12:47:21,214 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica 265
+12:47:21,227 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica: OfertaHabitacionDiaria [ubicacion=tv 59 #44-76, esIndividual=false, reservas=null]
+12:48:42,370 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj DGK Hoteles
+12:48:42,388 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando pj: PersonaJuridica [nit=1564115, horaApertura=07:00, horaCierre=22:00, tipo=HOSTAL, ofertasViviendaUniversitaria=null, ofertasHabitacionDiaria=null]
+12:49:12,964 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta 84545
+12:49:12,980 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta: Oferta [id_oferta=84545, tipo_oferta=HABITACION DIARIA, disponible=1, precio=60000]
+12:49:45,114 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica 84545
+12:49:45,130 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica: OfertaHabitacionDiaria [ubicacion=calle 67 #100- 70, esIndividual=true, reservas=null]
+12:52:22,506 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta 648
+12:52:22,520 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta: Oferta [id_oferta=648, tipo_oferta=HABITACION DIARIA, disponible=1, precio=67000]
+12:52:53,198 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica 648
+12:52:53,213 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta esporadica: OfertaHabitacionDiaria [ubicacion=calle 67 #100- 70, esIndividual=true, reservas=null]
+12:56:47,354 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Adicional 15,Piscina
+12:56:47,367 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando adicional: Adicional [id_oferta=15, nombre=Piscina, precio=0]
+12:57:34,138 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Adicional 15,Sauna
+12:57:34,152 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando adicional: Adicional [id_oferta=15, nombre=Sauna, precio=0]
+12:58:14,341 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Adicional 146,Piscina
+12:58:14,357 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando adicional: Adicional [id_oferta=146, nombre=Piscina, precio=0]
+12:58:44,923 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando Adicional 146,Sauna
+12:58:44,938 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando adicional: Adicional [id_oferta=146, nombre=Sauna, precio=0]
+13:02:09,743 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:02:09,743 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:02:09,752 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:04:45,858 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:04:45,859 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:04:45,867 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:06:31,706 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:06:31,707 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:06:31,715 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:11:45,846 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:11:45,847 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:11:45,855 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:12:38,657 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 18
+13:12:38,658 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 18
+13:12:38,796 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=18, fecha_inicio=3920-06-05, fecha_fin=3920-06-15, id_oferta=15, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:12:38,796 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=18, fecha_inicio=3920-06-05, fecha_fin=3920-06-15, id_oferta=15, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:12:38,819 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 18
+13:12:38,819 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 18
+13:12:38,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=18, fecha_inicio=3920-06-05, fecha_fin=3920-06-15, id_oferta=146, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:12:38,833 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=18, fecha_inicio=3920-06-05, fecha_fin=3920-06-15, id_oferta=146, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:13:53,901 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:13:53,901 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:13:53,915 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:17:41,418 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:17:41,419 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:17:41,433 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:21:54,451 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:21:54,451 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:21:54,460 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:24:03,930 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:24:03,930 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:24:03,939 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:25:35,608 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,609 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,731 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:25:35,732 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:25:35,746 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,746 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,762 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:25:35,762 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:25:35,773 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,773 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:25:35,792 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:25:35,792 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:34:45,118 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - NO se encontró un archivo de configuración válido
+13:34:47,550 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración por defecto
+13:34:47,551 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:34:57,796 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:34:57,797 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:34:57,805 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:35:23,045 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:35:23,304 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:36:38,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,138 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:36:38,138 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:36:38,148 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,148 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,163 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:36:38,163 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:36:38,172 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,172 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:36:38,184 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:36:38,184 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:38:24,697 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:38:24,710 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:39:11,821 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:39:11,821 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:39:11,830 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:40:02,886 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:02,886 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:03,027 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:40:03,027 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:40:03,037 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:03,037 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:03,050 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:40:03,050 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:40:03,063 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:03,063 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:40:03,076 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:40:03,076 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:43:25,097 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:43:25,097 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:43:25,106 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:43:51,554 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:43:51,738 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:44:43,252 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,252 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,264 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:44:43,264 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:44:43,277 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,277 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,288 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:44:43,288 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:44:43,300 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,300 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:44:43,310 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:44:43,310 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:04,948 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:47:04,949 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:47:04,957 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:47:14,986 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:47:15,174 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:47:59,261 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,261 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,276 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:59,276 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:59,291 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,291 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,304 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:59,304 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:59,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:47:59,333 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:47:59,333 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:49:23,834 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:49:23,834 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:49:23,844 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:49:28,963 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:49:29,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:50:12,841 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,841 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,852 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:50:12,852 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:50:12,861 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,861 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:50:12,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:50:12,881 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,881 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:50:12,896 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:50:12,896 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=648, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:52:12,188 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:52:12,189 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:52:12,197 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:52:24,538 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 74
+13:52:24,733 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 3
+13:52:53,910 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:52:53,910 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:52:53,924 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:52:53,924 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:52:53,935 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:52:53,935 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 74
+13:52:53,948 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:52:53,949 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=74, fecha_inicio=3920-06-05, fecha_fin=3920-06-10, id_oferta=84545, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+13:54:48,174 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:54:48,175 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:54:48,188 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:55:09,847 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:55:09,847 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:55:09,856 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:56:36,661 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 58
+13:56:36,661 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 58
+13:56:36,791 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=58, fecha_inicio=3920-09-10, fecha_fin=3920-10-08, id_oferta=15, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-09-06]
+13:56:36,791 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=58, fecha_inicio=3920-09-10, fecha_fin=3920-10-08, id_oferta=15, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-09-06]
+13:56:36,810 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 58
+13:56:36,810 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 58
+13:56:36,821 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=58, fecha_inicio=3920-09-10, fecha_fin=3920-10-08, id_oferta=146, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-09-06]
+13:56:36,821 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=58, fecha_inicio=3920-09-10, fecha_fin=3920-10-08, id_oferta=146, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-09-06]
+14:21:19,484 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:21:19,484 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+14:21:19,493 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+14:22:08,299 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta 1654
+14:22:08,602 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta: Oferta [id_oferta=1654, tipo_oferta=HABITACION MENSUAL, disponible=0, precio=500000]
+14:23:13,696 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta habitacion mensual 1654
+14:23:13,720 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando oferta habitacion mensual: OfertaHabitacionMensual [capacidad=2, descripcion=etssrdstdtrrdtr, ubicacion=cll 59 #44-55, contrato=null, reservas=null]
+14:53:55,769 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+14:53:55,769 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+14:53:55,778 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+14:53:59,800 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Generando los VO de Tipos de bebida
+14:53:59,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Generando los VO de Tipos de bebida: 9 existentes
+15:08:39,122 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:08:39,122 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:08:39,131 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:09:10,259 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:09:10,260 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:09:10,274 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:29:12,590 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:29:12,591 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:29:12,605 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:32:46,364 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:32:46,364 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:32:46,373 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:33:30,259 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:33:30,259 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:33:30,269 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:28:57,378 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+16:28:57,378 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+16:28:57,388 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:29:34,851 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 75
+16:29:34,971 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=75, fecha_inicio=3920-06-05, fecha_fin=3920-07-06, id_oferta=20, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-06-20]
+16:29:34,971 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 25
+16:29:34,993 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 1
+16:29:35,049 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 76
+16:29:35,059 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=76, fecha_inicio=3920-07-08, fecha_fin=3920-11-09, id_oferta=1654, doc_cliente=54584444, tipo_doc_cliente=CE, fecha_cancelacion=3920-07-01]
+16:29:35,059 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 30
+16:29:35,071 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 1
+16:31:43,420 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 76
+16:31:43,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=76, fecha_inicio=3920-06-05, fecha_fin=3920-06-15, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-06-01]
+16:31:43,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 18
+16:31:43,451 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 1
+16:31:43,546 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 76
+16:31:43,560 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO RESERVAS(num_reserva, fecha_inicio, fecha_fin, id_oferta, doc_cliente, tipo_doc_cliente, fecha_cancelacion) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-00001: restricción única (ISIS2304B092010.RESERVAS_PK) violada
+
+16:31:43,570 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: null
+16:34:15,429 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+16:34:15,430 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+16:34:15,440 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:34:20,886 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 76
+16:34:21,017 (AWT-EventQueue-0) ERROR [uniandes.isis2304.parranderos.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO RESERVAS(num_reserva, fecha_inicio, fecha_fin, id_oferta, doc_cliente, tipo_doc_cliente, fecha_cancelacion) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-00001: restricción única (ISIS2304B092010.RESERVAS_PK) violada
+
+16:34:21,031 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: null
+16:42:23,312 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+16:42:23,313 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
+16:42:23,322 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:42:30,693 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva 78
+16:42:30,956 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Adicionando reserva: Reserva [num_reserva=78, fecha_inicio=3920-09-10, fecha_fin=3920-10-08, id_oferta=265, doc_cliente=1815515, tipo_doc_cliente=CC, fecha_cancelacion=3920-09-06]
+16:42:30,956 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva por id: 58
+16:42:31,029 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.AlohAndes] - Eliminando reserva: 1

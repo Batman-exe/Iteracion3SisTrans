@@ -82,6 +82,19 @@
 				{
 					"label": "RF7",
 					"event": "RF7"
+				},
+				{
+					"label": "RF8",
+					"event": "RF8"
+				},
+				{
+					"label": "RF9",
+					"event": "RF9"
+				}
+				,
+				{
+					"label": "RF10",
+					"event": "RF10"
 				}
 			]
 		},
